@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>HostelPulse - CVR College of Engineering Hostels</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F0F3F8;--surf:#fff;--ink:#14202F;--mute:#5A6878;--line:#D5DCE6;--pri:#0B2F6B;--pri-ink:#fff;--soft:#E6ECF6;--hdr:#0B2F6B;--shadow:0 1px 2px rgba(15,30,60,.07),0 2px 10px rgba(15,30,60,.04);
+  --ok:#1B6E3E;--ok-bg:#DCEFE3;--bad:#A8231B;--bad-bg:#F8DFDC;--warn:#8A5200;--warn-bg:#FAEBC9;--info:#44546A;--info-bg:#E3E8EE;
+  --font:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+:root{color-scheme:light}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--font)}
+h1,h2,h3{margin:0;line-height:1.25}
+h1{font-size:28px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:20px;font-weight:600}
+h3{font-size:17px;font-weight:600}
+p{margin:0}
+a{color:var(--pri)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.sub{color:var(--mute);font-size:14.5px}
+.note{color:var(--mute);font-size:14.5px;margin-top:8px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px;background:var(--hdr);color:#fff;border-bottom:0}
+.brand{font-weight:700;font-size:21px;line-height:1.2}
+.brand small{display:block;font-weight:400;font-size:13.5px;color:rgba(255,255,255,.8);margin-top:2px}
+.top .btn{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);color:#fff;font-size:14px}
+.top .btn:hover{background:rgba(255,255,255,.24);border-color:#fff}
+.strip{display:flex;flex-wrap:wrap;align-items:center;gap:10px 26px;padding:10px 22px 16px;background:var(--hdr);color:#fff;border-bottom:0}
+.strip div{min-width:0}
+.strip span{display:block;font-size:13.5px;color:rgba(255,255,255,.78)}
+.strip b{font-weight:600;font-size:15.5px}
+.avatar{width:46px;height:46px;border-radius:50%;background:#fff;color:#0B2F6B;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;flex:none}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px;max-width:1340px;margin:0 auto;padding:22px}
+nav.side{display:flex;flex-direction:column;gap:4px;align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 40px);overflow-y:auto}
+nav.side button{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;border:0;background:none;padding:10px 14px;border-radius:8px;cursor:pointer;color:var(--ink);font-size:15.5px}
+nav.side button:hover{background:var(--soft)}
+nav.side button[aria-current="page"]{background:var(--pri);color:var(--pri-ink);font-weight:600}
+nav.side button .nl{display:flex;align-items:center;gap:12px}
+.badge{min-width:22px;padding:0 7px;border-radius:11px;background:var(--bad);color:#fff;font-size:13px;font-weight:600;text-align:center;line-height:22px}
+[aria-current="page"] .badge{background:var(--pri-ink);color:var(--pri)}
+main{min-width:0}
+.head{margin-bottom:16px}
+.head p{color:var(--mute);margin-top:2px}
+.panel{background:var(--surf);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px}
+.panel>h2,.panel>h3{margin-bottom:10px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.cols>.panel{margin-bottom:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--surf);padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:500;min-height:42px;font-size:15px}
+.btn:hover{border-color:var(--pri)}
+.btn.primary{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+.btn.primary:hover{filter:brightness(1.12)}
+.btn.danger{background:var(--bad);color:#fff;border-color:var(--bad)}
+.btn.small{padding:5px 12px;min-height:34px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.field{display:block;margin-bottom:12px}
+.field>span{display:block;font-size:14.5px;font-weight:600;margin-bottom:4px}
+input,select,textarea{width:100%;background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-height:46px;font-size:15.5px}
+input:focus,select:focus,textarea:focus{border-color:var(--pri)}
+textarea{min-height:84px;resize:vertical}
+input[type=checkbox]{width:auto;min-height:0;cursor:pointer;margin-right:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid transparent;white-space:nowrap}
+.p-ok{background:var(--ok-bg);color:var(--ok)}
+.p-bad{background:var(--bad-bg);color:var(--bad)}
+.p-warn{background:var(--warn-bg);color:var(--warn)}
+.p-info{background:var(--info-bg);color:var(--info)}
+.p-pri{background:var(--soft);color:var(--pri);border-color:var(--pri)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.tile{display:block;width:100%;text-align:left;background:var(--surf);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:14px 16px;position:relative;cursor:pointer}
+.tile:hover{border-color:var(--pri)}
+.tile.t-bad{border-left-color:var(--bad)}
+.tile.t-warn{border-left-color:var(--warn)}
+.tile.t-ok{border-left-color:var(--ok)}
+.tile .ti{position:absolute;top:14px;right:14px;color:var(--mute);opacity:.6}
+.tile .ti .ico{width:20px;height:20px}
+.tile .l{display:block;font-size:14px;color:var(--mute);padding-right:26px}
+.tile .v{display:block;font-size:28px;font-weight:700;line-height:1.2;margin:3px 0}
+.tile .v.txt{font-size:17px;line-height:1.35;font-weight:600;margin:5px 0}
+.tile .s{display:block;font-size:13px;color:var(--mute)}
+.hero{border-left:6px solid var(--line)}
+.hero.h-ok{border-left-color:var(--ok)}.hero.h-warn{border-left-color:var(--warn)}.hero.h-bad{border-left-color:var(--bad)}.hero.h-info{border-left-color:var(--info)}
+.hero .big{font-size:25px}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:16px}
+.quick .btn{justify-content:flex-start;min-height:50px;padding:12px 14px;box-shadow:var(--shadow)}
+.list>*{padding:12px 0;border-top:1px solid var(--line)}
+.list>*:first-child{border-top:0;padding-top:0}
+.item{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 18px}
+.item .main{flex:1 1 260px;min-width:0}
+.item .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}
+.line{margin-top:4px;color:var(--mute);font-size:15px}
+.line b{color:var(--ink);font-weight:600}
+.tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{border:0;background:none;padding:10px 16px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;font-weight:500;font-size:15.5px}
+.tab[aria-pressed="true"]{border-bottom-color:var(--pri);font-weight:700;color:var(--pri)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{padding:6px 12px;border-radius:6px;background:var(--info-bg);font-size:14px;cursor:pointer;border:1px solid transparent}
+.chip.active{background:var(--pri);color:var(--pri-ink);font-weight:600}
+.chip b{font-size:16px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:12px}
+.tools .field{margin:0;min-width:140px;flex:1 1 140px}
+.rc-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px}
+.rc-row .who{flex:1 1 200px}
+.rc-row .who span{display:inline-block;margin-right:12px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg-b{border:0;border-right:1px solid var(--line);background:var(--surf);padding:8px 14px;cursor:pointer;min-width:68px;min-height:40px;font-size:14px}
+.seg-b:last-child{border-right:0}
+.seg-b.on.s-P{background:var(--ok);color:#fff;font-weight:600}
+.seg-b.on.s-A{background:var(--bad);color:#fff;font-weight:600}
+.seg-b.on.s-O{background:var(--warn);color:#fff;font-weight:600}
+.seg-b.on.s-L{background:var(--info);color:#fff;font-weight:600}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+thead th{background:var(--soft);font-weight:600;white-space:nowrap}
+tbody tr:hover{background:var(--soft)}
+.reg{font-size:13px;width:auto}
+.reg th,.reg td{padding:0;text-align:center;border:1px solid var(--line);min-width:28px}
+.reg tbody tr:hover{background:none}
+.reg th.nm,.reg td.nm{position:sticky;left:0;background:var(--surf);text-align:left;padding:5px 10px;min-width:160px;z-index:1;white-space:nowrap;font-size:13.5px}
+.reg thead th.nm{background:var(--soft)}
+.reg th.today{background:var(--pri);color:var(--pri-ink)}
+.reg td.sum{padding:5px 8px;min-width:36px}
+.reg button{width:100%;height:30px;border:0;background:none;cursor:pointer;font-weight:700;font-size:13px;padding:0}
+.reg .c-P{background:var(--ok-bg);color:var(--ok)}
+.reg .c-A{background:var(--bad-bg);color:var(--bad)}
+.reg .c-O{background:var(--warn-bg);color:var(--warn)}
+.reg .c-L{background:var(--info-bg);color:var(--info)}
+.reg .fut{background:repeating-linear-gradient(135deg,transparent 0 4px,var(--line) 4px 5px)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px 4px;max-width:440px;margin:0 auto}
+.cal .dow{font-size:14px;color:var(--mute);text-align:center;padding:2px 0 4px}
+.cal span.blank{display:block}
+.cal button{width:100%;max-width:46px;margin:0 auto;aspect-ratio:1/1;min-height:0;padding:0;border-radius:50%;border:3px solid var(--line);background:none;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--mute);cursor:pointer}
+.cal .c-P{border-color:var(--ok);color:var(--ok)}
+.cal .c-A{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.cal .c-O{border-color:var(--warn);color:var(--warn);background:var(--warn-bg)}
+.cal .c-L{border-color:var(--info);color:var(--info);background:var(--info-bg)}
+.cal .fut{cursor:default}
+.cal .today{outline:2px dashed var(--warn);outline-offset:2px;font-weight:700}
+.calnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.calnav .btn{min-width:44px;font-size:20px;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--surf);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 8px;text-align:center}
+.stat b{display:block;font-size:28px;line-height:1.2}
+.stat span{font-size:14px;color:var(--mute)}
+.stat.ok b{color:var(--ok)}.stat.bad b{color:var(--bad)}.stat.warn b{color:var(--warn)}.stat.info b{color:var(--info)}
+.feed button{display:block;width:100%;text-align:left;border:0;background:none;padding:14px 0;cursor:pointer;border-top:1px solid var(--line)}
+.feed button:first-child{border-top:0;padding-top:0}
+.feed .unread{font-weight:600}
+.feed .unread:before{content:"";display:inline-block;width:9px;height:9px;margin-right:8px;background:var(--bad);border-radius:50%}
+.feed-day{font-size:13px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;padding:12px 0 6px;border-top:2px solid var(--line);margin-top:10px}
+.feed-day:first-child{border-top:0;margin-top:0}
+details{margin-top:8px}
+summary{cursor:pointer;color:var(--pri);font-weight:600;font-size:15.5px}
+details>form,details>div{margin-top:10px}
+.tl{margin:8px 0 0;padding:0 0 0 16px;border-left:2px solid var(--line);list-style:none}
+.tl li{margin-bottom:8px;font-size:15px}
+.tl li span{color:var(--mute);font-size:13px;display:block}
+.empty{text-align:center;color:var(--mute);padding:22px 0;font-size:15.5px}
+.linkbtn{border:0;background:none;padding:0;font:inherit;font-weight:700;color:var(--ink);cursor:pointer;text-align:left;text-decoration:underline dotted;text-underline-offset:3px}
+.linkbtn:hover{color:var(--pri)}
+.mlist button{display:flex;justify-content:space-between;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:12px 0;cursor:pointer;font-size:15.5px}
+.mlist button:first-child{border-top:0}
+.ico{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:8px;max-width:90vw;display:none;z-index:100;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.outpass-card{background:#fff;color:#07162B;border:2px solid #0B2F6B;border-radius:12px;padding:26px;max-width:660px;margin:0 auto;box-shadow:0 8px 30px rgba(0,0,0,.15);font-size:15.5px}
+.outpass-hdr{text-align:center;border-bottom:2px solid #0B2F6B;padding-bottom:14px;margin-bottom:18px}
+.outpass-hdr h2{color:#0B2F6B;font-size:22px;font-weight:700}
+.outpass-num{background:#E6ECF6;color:#0B2F6B;display:inline-block;padding:5px 14px;border-radius:6px;font-weight:700;font-size:15px;margin-top:8px}
+.outpass-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:15px;margin-bottom:18px}
+.outpass-grid b{color:#07162B}
+.outpass-ver{background:#F0F3F8;border:1px solid #D5DCE6;border-radius:8px;padding:14px;margin-bottom:18px;font-size:14px}
+.outpass-sig{display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;padding-top:14px;border-top:1px dashed #D5DCE6}
+.sig-img{max-height:52px;max-width:190px;display:block}
+#sigpad{border:1px dashed var(--line);border-radius:8px;background:var(--surf);cursor:crosshair;touch-action:none;display:block;margin-bottom:8px}
+.poll-box{border:1px solid var(--line);border-radius:8px;padding:16px;margin-top:12px;background:var(--soft);font-size:15.5px}
+.poll-prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
+.poll-prog-fill{height:100%;background:var(--pri)}
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-bottom:18px}
+.opt-card{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);cursor:pointer;display:flex;gap:14px;align-items:flex-start}
+.opt-card:hover{border-color:var(--pri)}
+.opt-card .ico{width:26px;height:26px;color:var(--pri);margin-top:2px}
+.opt-card b{display:block;font-size:17px;color:var(--ink);margin-bottom:3px}
+.opt-card span{display:block;font-size:13.5px;color:var(--mute);line-height:1.4}
+
+nav.bottom{display:none}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr);padding:14px;gap:14px;padding-bottom:96px}
+  nav.side{display:none}
+  nav.bottom{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surf);border-top:1px solid var(--line);padding:6px 2px calc(6px + env(safe-area-inset-bottom,0px))}
+  nav.bottom button{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;border:0;background:none;padding:5px 0;cursor:pointer;color:var(--mute);font-size:12px;min-height:50px}
+  nav.bottom button[aria-current="page"]{color:var(--pri);font-weight:700}
+  nav.bottom .ico{width:24px;height:24px}
+  nav.bottom .badge{position:absolute;top:0;left:calc(50% + 6px);min-width:18px;line-height:18px;font-size:11px;padding:0 5px;background:var(--bad)!important;color:#fff!important}
+  .scrim{display:block;position:fixed;inset:0;z-index:25;border:0;background:rgba(8,16,28,.5);width:100%;padding:0;cursor:default}
+  .sheet{display:flex;flex-direction:column;position:fixed;left:8px;right:8px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 8px 30px rgba(0,0,0,.25);max-height:80vh;overflow-y:auto}
+  .sheet button{display:flex;align-items:center;gap:12px;border:0;background:none;padding:12px 12px;border-radius:8px;text-align:left;font-size:14px;cursor:pointer;color:var(--ink)}
+  .sheet button:hover{background:var(--soft)}
+  .sheet .badge{margin-left:auto}
+  .top{padding:10px 14px}
+  .strip{padding:8px 14px 12px;gap:6px 16px}
+  #toast{bottom:calc(env(safe-area-inset-bottom,0px) + 80px)}
+  .seg{width:100%}.seg-b{flex:1}
+  .quick{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr}
+}
+
+.login-wrap{min-height:100vh;max-width:1100px;margin:auto;padding:48px 24px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.login-brand{font-size:30px;font-weight:700;color:var(--pri)}
+.login-kicker{font-size:11px;letter-spacing:.12em;font-weight:700;color:var(--mute);margin:12px 0}
+.login-intro h1{font-size:44px;margin:34px 0 18px;line-height:1.15}
+.login-intro>p:not(.login-kicker){color:var(--mute)}
+.login-features{display:grid;gap:12px;margin:30px 0;color:var(--pri);font-weight:600;font-size:15px}
+.login-features span:before{content:'✓';margin-right:10px}
+.login-disclaimer{font-size:12px;margin-top:44px}
+.login-card{background:white;border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:0 12px 45px #14202f0a}
+.login-card h2{font-size:28px;margin-bottom:10px}.login-tabs{display:flex;gap:10px;margin:26px 0}.login-tabs .btn{flex:1}
+.login-demo{background:var(--soft);padding:16px;border-radius:10px;margin-top:24px;font-size:14px;line-height:1.8}.login-demo b{display:block;margin-bottom:5px}
+.login-submit{width:100%}.login-error{color:var(--bad);font-size:14px;margin-bottom:12px}
+@media(max-width:760px){.login-wrap{grid-template-columns:1fr;gap:26px;padding:24px 16px}.login-intro h1{font-size:32px;margin:18px 0 12px}.login-features,.login-disclaimer{display:none}.login-card{padding:24px}.login-brand{font-size:25px}}
+
+
+.lf-photo{display:block;width:100%;max-width:360px;max-height:280px;object-fit:contain;background:var(--soft);border:1px solid var(--line);border-radius:10px;margin:12px 0}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const uid=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-3);
+const ymd=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const lt=d=>ymd(d)+'T'+pad(d.getHours())+':'+pad(d.getMinutes());
+const TODAY=()=>ymd(new Date());
+const NOW=()=>lt(new Date());
+const pd=s=>{const a=s.split('-').map(Number);return new Date(a[0],a[1]-1,a[2])};
+const fDate=s=>pd(s.slice(0,10)).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+const fDay=s=>pd(s.slice(0,10)).toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+const fTime=s=>new Date(s).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true});
+const fDT=s=>fDate(s)+', '+fTime(s);
+const hr12=h=>(h%12||12)+':00 '+(h<12?'am':'pm');
+const first=n=>String(n).split(' ')[0];
+const plus=(d,days)=>{const x=new Date(d);x.setDate(x.getDate()+days);return x};
+const tel=p=>'<a href="tel:'+esc(String(p).replace(/\s/g,''))+'">'+esc(p)+'</a>';
+const telBtn=(p,lbl='Call')=>'<a class="btn small" href="tel:'+esc(String(p).replace(/\s/g,''))+'">'+ic('call')+' '+esc(lbl)+': '+esc(p)+'</a>';
+
+/* ---------- icons ---------- */
+const ICON={
+ student:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
+ overview:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+ attendance:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/>',
+ outings:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
+ issues:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+ laundry:'<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>',
+ medical:'<path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z"/>',
+ lostfound:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+ mess:'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+ info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
+ more:'<circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>',
+ bell:'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>',
+ call:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+ download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+ check:'<polyline points="20 6 9 17 4 12"/>',
+ poll:'<path d="M18 20V10M12 20V4M6 20v-6"/>',
+ pass:'<rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="13" y2="12"/><line x1="7" y1="16" x2="10" y2="16"/>',
+ pen:'<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>'
+};
+const ic=n=>'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">'+(ICON[n]||ICON.info)+'</svg>';
+
+/* ---------- storage ---------- */
+const KEY='hostelpulse.light-demo.v1';
+function rd(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}}
+function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>{t.style.display='none'},3800)}
+
+/* ---------- seed data ---------- */
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function seed(){
+  const R=rng(2026),T=new Date();
+  const A=['Ananya Reddy','Sneha Kulkarni','Divya Sharma','Meghana Rao','Pooja Nair','Harini Iyer','Kavya Menon','Swathi Goud','Nikitha Yadav','Ravali Patel','Bhavana Singh','Mounika Chary'];
+  const B=['Karthik Varma','Rohit Naik','Aditya Joshi','Vamsi Krishna','Sandeep Raju','Nithin Kumar','Arjun Das','Manoj Prasad','Praveen Teja','Harsha Vardhan'];
+  const courses=['B.Tech CSE','B.Tech ECE','B.Tech IT','B.Tech AI&DS','B.Tech Mechanical'];
+  const bloods=['O+','A+','B+','AB+','O-','A-'];
+  const mentors=['Dr. K. Srinivas','Prof. M. Anuradha','Dr. V. Prasad','Prof. S. R. Rao','Dr. P. Swathi'];
+  const students=[];
+  A.forEach((n,i)=>students.push({
+    roll:'25B81A05'+pad(10+i),name:n,hostel:'Hostel A',room:'A-'+(101+Math.floor(i/2)),
+    phone:'90000 '+(20000+i),course:courses[i%courses.length],blood:bloods[i%bloods.length],
+    healthNote:i===0?'Mild dust allergy':i===3?'Asthma (inhaler with student)':'No known chronic issues',
+    address:'H.No '+(12+i)+'/A, Main Road, Warangal, Telangana - 506002',
+    mentorName:mentors[i%mentors.length],mentorPhone:'98480 '+(30000+i),
+    parentName:'K. '+n.split(' ')[1]+' (Parent)',parentPhone:'98490 '+(40000+i)
+  }));
+  B.forEach((n,i)=>students.push({
+    roll:'24B81A04'+pad(10+i),name:n,hostel:'Hostel B',room:'B-'+(201+Math.floor(i/2)),
+    phone:'90000 '+(21000+i),course:courses[(i+1)%courses.length],blood:bloods[(i+2)%bloods.length],
+    healthNote:i===2?'Spectacles (high power)':i===5?'Allergic to peanuts':'None',
+    address:'Flat '+(300+i)+', Srinivasa Towers, Nizamabad, Telangana - 503001',
+    mentorName:mentors[(i+2)%mentors.length],mentorPhone:'98480 '+(31000+i),
+    parentName:'R. '+n.split(' ')[1]+' (Parent)',parentPhone:'98490 '+(41000+i)
+  }));
+  const att={},rollcall={},outings=[];
+  const places=['Market','Relative\'s house','Hospital','Mall','Bank','Temple'],purposes=['Shopping','Family visit','Medical','Other'];
+  for(let d=34;d>=1;d--){
+    const k=ymd(plus(T,-d));att[k]={};rollcall[k]={at:k+'T21:10',notified:[]};
+    const dayOfWeek=pd(k).getDay();
+    students.forEach(s=>{
+      const r=R();const v=r<.86?'P':r<.90?'O':r<.94?'L':'A';att[k][s.roll]=v;
+      if(v==='O'){
+        const late=R()<.2;
+        const isSun=dayOfWeek===0;
+        outings.push({
+          id:uid(),roll:s.roll,type:isSun?'sunday':'general',
+          purpose:purposes[Math.floor(R()*4)],place:places[Math.floor(R()*6)],
+          phone:s.phone,expectedOut:k+'T16:00',expectedIn:k+'T19:30',
+          status:'returned',outAt:k+'T16:05',inAt:k+(late?'T20:25':'T19:'+pad(10+Math.floor(R()*18))),
+          decidedAt:k+'T12:00',mentorSpoke:true,parentSpoke:true,
+          outpassNum:'CVR-OP-'+pad(Math.floor(R()*89999+10000))
+        });
+      }
+    });
+  }
+  const iso=(m)=>lt(new Date(T.getTime()+m*60000));
+  const dem=students[0].roll;
+  outings.push({
+    id:uid(),roll:students[6].roll,type:'general',purpose:'Shopping',place:'City Centre',
+    phone:students[6].phone,expectedOut:iso(-150),expectedIn:iso(60),status:'out',
+    outAt:iso(-140),decidedAt:iso(-400),mentorSpoke:true,parentSpoke:true,
+    outpassNum:'CVR-OP-98102',reason:'Stationery and project supplies'
+  });
+  outings.push({
+    id:uid(),roll:students[15].roll,type:'general',purpose:'Medical',place:'Clinic near gate',
+    phone:students[15].phone,expectedOut:iso(-200),expectedIn:iso(-25),status:'out',
+    outAt:iso(-190),decidedAt:iso(-500),mentorSpoke:true,parentSpoke:true,
+    outpassNum:'CVR-OP-98103',reason:'Dentist checkup'
+  });
+  outings.push({
+    id:uid(),roll:students[3].roll,type:'sunday',purpose:'Family visit',place:'Aunt\'s house',
+    phone:students[3].phone,expectedOut:iso(120),expectedIn:iso(300),status:'approved',
+    decidedAt:iso(-60),mentorSpoke:true,parentSpoke:true,mentorNote:'Spoke to faculty advisor',
+    parentNote:'Mother confirmed permission',outpassNum:'CVR-OP-98244',reason:'Family lunch'
+  });
+  outings.push({
+    id:uid(),roll:students[1].roll,type:'sunday',purpose:'Family visit',place:'Home, for cousin\'s wedding',
+    phone:students[1].phone,expectedOut:lt(new Date(plus(T,1).setHours(10,0,0,0))),
+    expectedIn:lt(new Date(plus(T,1).setHours(18,30,0,0))),status:'pending',createdAt:iso(-90),
+    mentorSpoke:false,parentSpoke:false,reason:'Family wedding event'
+  });
+
+  const tlog=(t,by)=>({at:iso(t),text:by});
+  const issues=[
+    {id:uid(),roll:students[1].roll,cat:'Electrical',pri:'Urgent',where:students[1].room,text:'Ceiling fan makes a loud noise and wobbles.',status:'visit',staff:'Ramesh (electrician)',visit:iso(180),createdAt:iso(-1500),log:[tlog(-1500,'Reported by Sneha Kulkarni'),tlog(-1300,'Assigned to Ramesh (electrician)'),tlog(-1290,'Visit set')]},
+    {id:uid(),roll:students[8].roll,cat:'Plumbing',pri:'Normal',where:'Hostel B, 2nd floor washroom',text:'Tap in the last washroom keeps dripping.',status:'reported',createdAt:iso(-300),log:[tlog(-300,'Reported by '+students[8].name)]},
+    {id:uid(),roll:dem,cat:'Internet',pri:'Normal',where:students[0].room,text:'Wi-Fi drops every evening after 8 pm.',status:'assigned',staff:'Imran (network)',createdAt:iso(-2900),log:[tlog(-2900,'Reported by Ananya Reddy'),tlog(-2500,'Assigned to Imran (network)')]}
+  ];
+  const laundry=[
+    {id:uid(),roll:dem,items:12,note:'Blue bag',status:'washing',at:iso(-1000),log:[tlog(-1000,'Given to dhobi'),tlog(-600,'Washing')]},
+    {id:uid(),roll:students[4].roll,items:9,note:'Bag 14',status:'ready',at:iso(-2600),log:[tlog(-2600,'Given to dhobi'),tlog(-120,'Ready to collect')]},
+    {id:uid(),roll:students[13].roll,items:15,note:'',status:'given',at:iso(-200),log:[tlog(-200,'Given to dhobi')]}
+  ];
+  const lf=[
+    {id:uid(),kind:'lost',item:'Black calculator (Casio fx-991)',details:'Has roll 25B81A0512 scratched on back.',place:'Study hall 2nd floor',date:ymd(plus(T,-2)),roll:students[2].roll,status:'open'},
+    {id:uid(),kind:'found',item:'Silver key with a blue tag',details:'Found near mess entrance bench.',place:'Mess entrance',date:ymd(plus(T,-1)),roll:students[12].roll,status:'open'},
+    {id:uid(),kind:'lost',item:'Water bottle, green steel',details:'Milton 1L left on balcony ledge.',place:'Hostel A 2nd floor balcony',date:TODAY(),roll:students[5].roll,status:'open'}
+  ];
+  const feedback=[
+    {id:uid(),roll:students[9].roll,type:'Complaint',meal:'Dinner',text:'Rice was undercooked yesterday.',status:'new',at:iso(-800)},
+    {id:uid(),roll:students[14].roll,type:'Requirement',meal:'Breakfast',text:'Please add a fruit option twice a week.',status:'seen',at:iso(-3000)},
+    {id:uid(),roll:dem,type:'Opinion',meal:'General',text:'The new Sunday menu is good.',status:'new',at:iso(-2000)}
+  ];
+  const M=(b,l,s,d)=>({b,l,s,d});
+  const menu={
+    Mon:M('Idli, sambar, coconut chutney','Rice, dal, beans fry, curd','Tea, mirchi bajji','Chapati, paneer curry, rice'),
+    Tue:M('Upma, coconut chutney','Rice, sambar, potato fry, curd','Tea, boiled sprouts','Chapati, mixed veg curry, rice'),
+    Wed:M('Poori, aloo curry','Rice, rasam, cabbage fry, curd','Tea, samosa','Chapati, dal tadka, rice'),
+    Thu:M('Dosa, tomato chutney','Rice, dal, brinjal curry, curd','Tea, biscuits','Fried rice, veg manchurian'),
+    Fri:M('Pongal, sambar','Rice, sambar, beetroot fry, curd','Tea, corn chaat','Chapati, egg curry or paneer curry, rice'),
+    Sat:M('Bread, jam, boiled egg','Veg pulao, raita','Tea, pakoda','Chapati, chole, rice'),
+    Sun:M('Chole bhature','Chicken or veg biryani, raita','Tea, cake','Rice, dal, curd, sweet')
+  };
+  const polls=[
+    {
+      id:'poll-wed-dinner',mealKey:'Wed-d',day:'Wed',meal:'Dinner',
+      dish:'Paneer Butter Masala',title:'Are you okay with this curry? (Paneer Butter Masala)',
+      options:['Liked it','It\'s okay','Not good'],status:'open',createdAt:iso(-1800),
+      votes:{'25B81A0510':{opt:0,comment:'Tasted very fresh!'},'25B81A0511':{opt:0,comment:''},'25B81A0512':{opt:1,comment:'A bit too spicy'},'24B81A0410':{opt:0,comment:''}}
+    },
+    {
+      id:'poll-sun-sweet',mealKey:'Sun-d',day:'Sun',meal:'Dinner',
+      dish:'Sunday Special Sweet',title:'Which sweet on Sunday dinner?',
+      options:['Gulab Jamun','Rasgulla','Mysore Pak','Kheer'],status:'open',createdAt:iso(-3000),
+      votes:{'25B81A0510':{opt:0,comment:'Fresh hot jamuns please'},'24B81A0411':{opt:1,comment:''}}
+    }
+  ];
+  const feedItems=[
+    {id:uid(),cat:'menu',title:'Dinner menu updated for Wednesday',desc:'Chapati with Paneer Butter Masala and Jeera Rice. Warden attached an opinion poll.',date:TODAY(),at:iso(-60),readBy:[]},
+    {id:uid(),cat:'polls',title:'New opinion poll: Which sweet on Sunday?',desc:'Vote for your choice of sweet for Sunday dinner.',date:TODAY(),at:iso(-120),readBy:[]},
+    {id:uid(),cat:'announcement',title:'Hostel gate closing timing strictly enforced',desc:'All students must report before 8:00 pm. Night roll call starts at 9:00 pm.',date:TODAY(),at:iso(-360),readBy:[]},
+    {id:uid(),cat:'holidays',title:'Upcoming holiday notice: Dasara vacation',desc:'Hostel permissions for Dasara vacation from Oct 20 to Oct 25 are now active.',date:ymd(plus(T,-1)),at:iso(-1500),readBy:[]},
+    {id:uid(),cat:'lostfound',title:'Lost item reported: Black calculator (Casio)',desc:'Lost in 2nd floor study hall. Please check and notify finder.',date:ymd(plus(T,-2)),at:iso(-2880),readBy:[]}
+  ];
+  const holidays=[
+    {id:uid(),date:'2026-10-20',endDate:'2026-10-25',name:'Dasara Vacation',note:'Holiday outings approved without Sunday quota.'},
+    {id:uid(),date:'2026-11-08',endDate:'2026-11-10',name:'Diwali Festival',note:'Festival leave granted.'},
+    {id:uid(),date:'2027-01-14',endDate:'2027-01-17',name:'Sankranti Holidays',note:'Semester break days.'},
+    {id:uid(),date:'2027-01-26',endDate:'2027-01-26',name:'Republic Day',note:'Campus flag hoisting at 8:30 am.'}
+  ];
+  const contacts=[
+    {id:'c1',label:'Chief Warden',name:'Prof. K. Rama Rao',phone:'90000 30010'},
+    {id:'c2',label:'Resident Warden (Girls)',name:'Dr. Lakshmi S.',phone:'90000 30011'},
+    {id:'c3',label:'Resident Warden (Boys)',name:'Dr. P. Venkatesh',phone:'90000 30012'},
+    {id:'c4',label:'Campus Health Clinic',name:'Dr. K. Srinivas (Duty Doctor)',phone:'90000 30020'},
+    {id:'c5',label:'Ambulance (Campus & 108)',name:'Emergency Ambulance Service',phone:'108'},
+    {id:'c6',label:'Emergency Help',name:'National Emergency Service',phone:'112'}
+  ];
+  const staff=[
+    {id:'s1',role:'Electrician',name:'Ramesh',phone:'90000 30001'},
+    {id:'s2',role:'Plumber',name:'Yadaiah',phone:'90000 30002'},
+    {id:'s3',role:'Carpenter',name:'Bhaskar',phone:'90000 30003'},
+    {id:'s4',role:'Network',name:'Imran',phone:'90000 30004'},
+    {id:'s5',role:'Housekeeping',name:'Lakshmi',phone:'90000 30005'}
+  ];
+  const sampleSignature='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48"><path d="M10 32 Q 40 5, 70 30 T 130 18 T 170 35" fill="none" stroke="#0B2F6B" stroke-width="2.5" stroke-linecap="round"/><text x="110" y="44" font-family="sans-serif" font-size="9" fill="#0B2F6B" font-weight="bold">Warden Auth</text></svg>');
+
+  return {
+    students,att,rollcall,outings,issues,laundry,slots:[],
+    emergencies:[{id:uid(),roll:students[10].roll,symptom:'Fever',note:'High temperature since morning.',phone:students[10].phone,status:'resolved',at:iso(-1700),log:[tlog(-1700,'Alert sent'),tlog(-1680,'Warden responding'),tlog(-1500,'Resolved. Taken to campus doctor.')]}],
+    lf,feedback,menu,polls,feedItems,holidays,contacts,staff,
+    rules:{curfew:'20:00',rollcall:'21:00'},
+    wardenAuth:{name:'Dr. Lakshmi S. (Chief Warden)'},
+    wardenSig:sampleSignature,
+    demoRoll:dem
+  };
+}
+
+/* ---------- state ---------- */
+const defaultSeed=seed();
+let DB=rd(KEY)||defaultSeed;
+const reqArrays=['students','outings','issues','laundry','slots','emergencies','lf','polls','feedItems','holidays'];
+for(const k of reqArrays){if(!Array.isArray(DB[k]))DB[k]=defaultSeed[k]||[]}
+const reqObjs=['menu','rollcall','contacts','rules'];
+for(const k of reqObjs){if(!DB[k]||typeof DB[k]!=='object')DB[k]=defaultSeed[k]||{}}
+if(!DB.wardenSig)DB.wardenSig=defaultSeed.wardenSig;
+let SESSION=null;
+let loginRole='student';
+const S={
+  view:'overview',attTab:'roll',attDate:TODAY(),attMonth:TODAY().slice(0,7),attHostel:'all',attQ:'',
+  selDay:null,lfFilter:'all',issueFilter:'open',fbFilter:'all',slotDay:'today',
+  menuEdit:false,infoEdit:false,confirmReset:false,sosOpen:false,more:false,
+  lookRoll:null,lookQ:'',lookMonth:TODAY().slice(0,7),fk:null,
+  feedFilter:'all',outTab:'all',activeOutpass:null,verifyOuting:null,
+  pollModalMeal:null,createPollOpen:false,annOpen:false,
+  wardenIssueOpen:false,wardenLauOpen:false
+};
+const INITIAL_STATE=JSON.parse(JSON.stringify(S));
+const allowedView=v=>isW()||!['student','signature'].includes(v);
+const visibleNav=()=>NAV.filter(n=>allowedView(n[0]));
+const save=()=>wr(KEY,DB);
+const commit=()=>{save();render()};
+const isW=()=>!!SESSION&&SESSION.role==='warden';
+const me=()=>!isW()?DB.students.find(s=>s.roll===SESSION.roll)||DB.students[0]:DB.students[0];
+const stu=r=>DB.students.find(s=>s.roll===r)||{name:r,room:'',phone:'',hostel:'',course:'B.Tech',blood:'O+',healthNote:'None',address:'Campus',mentorName:'Dr. K. Srinivas',mentorPhone:'98480 30010',parentName:'Parent of '+r,parentPhone:'98490 40010'};
+const who=()=>isW()?'warden':(SESSION?SESSION.roll:'anon');
+
+function pushFeed(cat,title,desc){
+  DB.feedItems.unshift({id:uid(),cat,title,desc,date:TODAY(),at:NOW(),readBy:[]});
+  if(DB.feedItems.length>250)DB.feedItems.pop();
+}
+
+/* ---------- attendance logic ---------- */
+const ATT={P:['Present','ok'],A:['Absent','bad'],O:['Outing','warn'],L:['Leave','info']};
+const isOut=r=>DB.outings.find(o=>o.roll===r&&o.status==='out');
+function sOf(roll,date){const v=(DB.att[date]||{})[roll];if(v)return v;if(date===TODAY()&&isOut(roll))return 'O';return null}
+function stats(roll,ym){
+  const a=ym.split('-').map(Number),n=new Date(a[0],a[1],0).getDate(),c={P:0,A:0,O:0,L:0};
+  for(let i=1;i<=n;i++){const k=ym+'-'+pad(i);if(k>TODAY())break;const v=sOf(roll,k);if(v)c[v]++}
+  const den=c.P+c.A+c.O;c.pct=den?Math.round(c.P*100/den):null;return c;
+}
+const overdueMin=o=>Math.round((Date.now()-new Date(o.expectedIn).getTime())/60000);
+const isLate=o=>o.inAt&&new Date(o.inAt)>new Date(o.expectedIn);
+function where(roll){
+  const o=isOut(roll);
+  if(o){const od=overdueMin(o);return od>0?{t:'Outside the hostel, '+od+' min late',tone:'bad',d:'Left at '+fTime(o.outAt)+', was due back by '+fTime(o.expectedIn)}:{t:'Outside the hostel on an outing',tone:'warn',d:'Left at '+fTime(o.outAt)+', due back by '+fTime(o.expectedIn)}}
+  if((DB.att[TODAY()]||{})[roll]==='L')return {t:'On leave today',tone:'info',d:'Marked as leave in today\'s register'};
+  const ap=DB.outings.find(x=>x.roll===roll&&x.status==='approved'&&x.expectedOut.slice(0,10)===TODAY());
+  return {t:'Inside the hostel',tone:'ok',d:ap?'Outing approved for '+fTime(ap.expectedOut)+', not left yet':'No outing recorded at the gate'};
+}
+
+function sundayQuotaUsed(roll,monthYm){
+  const outs=DB.outings.filter(o=>{
+    if(o.roll!==roll)return false;
+    if(o.type!=='sunday')return false;
+    if(o.status==='rejected'||o.status==='cancelled')return false;
+    const dt=(o.expectedOut||'').slice(0,7);
+    return dt===monthYm;
+  });
+  return outs.length;
+}
+
+const pill=(t,tone)=>'<span class="pill p-'+(tone||'info')+'">'+esc(t)+'</span>';
+const attPill=v=>v?pill(ATT[v][0],ATT[v][1]):pill('Not marked','info');
+const head=(t,s)=>'<div class="head"><h1>'+esc(t)+'</h1>'+(s?'<p>'+esc(s)+'</p>':'')+'</div>';
+const empty=t=>'<p class="empty">'+esc(t)+'</p>';
+const field=(l,inner)=>'<label class="field"><span>'+esc(l)+'</span>'+inner+'</label>';
+const opts=(arr,sel)=>arr.map(x=>'<option'+(x===sel?' selected':'')+'>'+esc(x)+'</option>').join('');
+function outStatus(o){
+  if(o.status==='pending')return pill('Waiting for warden','warn');
+  if(o.status==='verifying')return pill('Warden is verifying','warn');
+  if(o.status==='approved')return pill('Approved & Pass issued','ok');
+  if(o.status==='rejected')return pill('Rejected','bad');
+  if(o.status==='cancelled')return pill('Cancelled','info');
+  if(o.status==='out')return overdueMin(o)>0?pill('Overdue','bad'):pill('Out','pri');
+  return isLate(o)?pill('Returned late','warn'):pill('Returned on time','ok');
+}
+
+/* ALL 12 FIRST-CLASS OPTIONS CLEARLY LISTED */
+const NAV=[
+  ['overview','Overview','overview'],
+  ['outings','Outings & Quota','outings'],
+  ['verification','Verification & Outpasses','pass'],
+  ['mess','Mess & Opinion Polls','mess'],
+  ['student','Student Profile Lookup','student'],
+  ['attendance','Attendance & Exports','attendance'],
+  ['issues','Repairs & Maintenance','issues'],
+  ['laundry','Laundry & Dhobi','laundry'],
+  ['lostfound','Lost & Found','lostfound'],
+  ['feed','Daily Updates Feed','bell'],
+  ['signature','Drawn Signature Pad','pen'],
+  ['medical','Medical SOS','medical']
+];
+
+function unreadFeedCount(){
+  const u=who();
+  return DB.feedItems.filter(f=>!f.readBy||!f.readBy.includes(u)).length;
+}
+
+function counts(){
+  const c={};const w=isW(),r=SESSION?SESSION.roll:'';
+  if(w){
+    const unm=DB.students.filter(s=>!sOf(s.roll,TODAY())).length;
+    c.attendance=DB.rollcall[TODAY()]?0:unm;
+    c.verification=DB.outings.filter(o=>o.status==='pending'||o.status==='verifying').length;
+    c.outings=c.verification+DB.outings.filter(o=>o.status==='out'&&overdueMin(o)>0).length;
+    c.issues=DB.issues.filter(i=>i.status==='reported').length;
+    c.medical=DB.emergencies.filter(e=>e.status!=='resolved').length;
+    c.laundry=DB.laundry.filter(l=>l.status==='given').length;
+    c.mess=DB.polls.filter(p=>p.status==='open').length;
+    c.feed=unreadFeedCount();
+  }else if(SESSION){
+    c.outings=DB.outings.filter(o=>o.roll===r&&(o.status==='out'||o.status==='approved')).length;
+    c.verification=c.outings;
+    c.issues=DB.issues.filter(i=>i.roll===r&&i.status==='fixed').length;
+    c.laundry=DB.laundry.filter(l=>l.roll===r&&l.status==='ready').length;
+    c.medical=DB.emergencies.filter(e=>e.roll===r&&e.status!=='resolved').length;
+    c.mess=DB.polls.filter(p=>p.status==='open'&&(!p.votes||!p.votes[r])).length;
+    c.feed=unreadFeedCount();
+  }
+  return c;
+}
+
+/* ---------- SHELL & HEADER ---------- */
+function shell(){
+  const c=counts(),m=me(),w=isW();
+  const unread=unreadFeedCount();
+
+  const strip=w
+    ?'<div><span>Portal Role</span><b>Warden Administration</b></div><div><span>Hostel</span><b>All Hostels (Hostel A & B)</b></div><div><span>Students</span><b>'+DB.students.length+'</b></div><div><span>Today</span><b>'+fDay(TODAY())+'</b></div>'
+    :'<div><span>Student</span><b>'+esc(m.name)+'</b></div><div><span>Roll No</span><b>'+esc(m.roll)+'</b></div><div><span>Room</span><b>'+esc(m.room)+' ('+esc(m.hostel)+')</b></div><div><span>Today</span><b>'+fDay(TODAY())+'</b></div>';
+
+  return '<header class="top"><div class="brand">HostelPulse<small>CVR College of Engineering Hostels</small></div><div class="btnrow">'
+   +'<span class="sub" style="color:white">'+(w?'Warden demo':'Student demo')+'</span>'
+   +'<button class="btn small" data-act="go" data-v="feed" title="Daily Updates Feed">'+ic('bell')+' Feed'+(unread?' <span class="badge" style="background:#fff;color:var(--bad)">'+unread+'</span>':'')+'</button>'
+   +'<button class="btn small" data-act="logout">Log out</button>'
+   +'</div></header>'
+   +'<div class="strip"><div class="avatar" aria-hidden="true">'+(w?'W':(m.name[0]||'S')).toUpperCase()+'</div>'+strip+'</div><div class="layout"><nav class="side" aria-label="Hostel Modules">'
+   +visibleNav().map(n=>'<button data-act="go" data-v="'+n[0]+'" '+(S.view===n[0]?'aria-current="page"':'')+'><span class="nl">'+ic(n[2])+n[1]+'</span>'+(c[n[0]]?'<span class="badge">'+c[n[0]]+'</span>':'')+'</button>').join('')
+   +'</nav><main id="main">'+viewHTML()+'</main></div>'+bottom(c);
+}
+
+const BOT=[
+  ['overview','Home','overview'],
+  ['attendance','Attendance','attendance'],
+  ['outings','Outings','outings'],
+  ['medical','Medical','medical']
+];
+function bottom(c){
+  const botKeys=['overview','attendance','outings','medical'];
+  const rest=visibleNav().filter(n=>!botKeys.includes(n[0]));
+  const mc=rest.reduce((a,n)=>a+(c[n[0]]||0),0);
+  const b=BOT.map(n=>'<button data-act="go" data-v="'+n[0]+'"'+(S.view===n[0]&&!S.more?' aria-current="page"':'')+'>'+ic(n[2])+'<span>'+n[1]+'</span>'+(c[n[0]]?'<i class="badge">'+c[n[0]]+'</i>':'')+'</button>').join('');
+  const more='<button data-act="more" aria-expanded="'+!!S.more+'"'+((S.more||rest.some(n=>n[0]===S.view))?' aria-current="page"':'')+'>'+ic('more')+'<span>More</span>'+(mc?'<i class="badge">'+mc+'</i>':'')+'</button>';
+  const sheet=S.more?'<button class="scrim" data-act="more-close" aria-label="Close menu"></button><div class="sheet"><h3 style="padding:10px 12px;margin:0">All Hostel Options</h3>'+visibleNav().map(n=>'<button data-act="go" data-v="'+n[0]+'"'+(S.view===n[0]?' style="background:var(--soft);font-weight:600"':'')+'>'+ic(n[2])+'<span>'+n[1]+'</span>'+(c[n[0]]?'<i class="badge">'+c[n[0]]+'</i>':'')+'</button>').join('')+'</div>':'';
+  return sheet+'<nav class="bottom" aria-label="Main">'+b+more+'</nav>';
+}
+
+
+function loginHTML(){
+  const w=loginRole==='warden';
+  return `<main class="login-wrap"><section class="login-intro"><div class="login-brand">HostelPulse</div><p class="login-kicker">CVR COLLEGE OF ENGINEERING HOSTELS</p><h1>Your hostel.<br>One connected place.</h1><p>Manage daily hostel life with a dedicated space for students and wardens.</p><div class="login-features"><span>Attendance & outpasses</span><span>Mess & maintenance</span><span>Announcements & services</span></div><p class="login-disclaimer">Student project · Interactive demo with sample data</p></section><section class="login-card" aria-labelledby="login-title"><p class="login-kicker">WELCOME TO HOSTELPULSE</p><h2 id="login-title">${w?'Warden':'Student'} sign in</h2><p class="sub">${w?'Manage hostel operations and student requests.':'Access your attendance, requests and hostel services.'}</p><div class="login-tabs" role="group" aria-label="Choose your portal"><button type="button" data-login-role="student" aria-pressed="${!w}" class="btn ${!w?'primary':''}">Student</button><button type="button" data-login-role="warden" aria-pressed="${w}" class="btn ${w?'primary':''}">Warden</button></div><form data-form="login"><label class="field"><span>Username</span><input name="username" autocomplete="username" required placeholder="${loginRole}" autocapitalize="none" spellcheck="false"></label><label class="field"><span>Password</span><input name="password" type="password" autocomplete="current-password" required placeholder="Enter demo password"></label><p id="login-error" role="alert" class="login-error"></p><button class="btn primary login-submit" type="submit">Sign in to ${w?'warden':'student'} portal</button></form><div class="login-demo"><b>Try the ${loginRole} demo</b><div>Username: <code>${loginRole}</code></div><div>Password: <code>${w?'Warden@123':'Student@123'}</code></div></div><p class="note">Demo access only. Data stays in this browser. These accounts do not provide secure authentication; real deployment requires a backend.</p></section></main>`;
+}
+
+function render(){
+  if(!SESSION){$('#app').innerHTML=loginHTML();return;}
+  if(!allowedView(S.view))S.view='overview';
+  const nav=$('nav.side'),sl=nav?nav.scrollLeft:0;
+  $('#app').innerHTML=shell();
+  if(!isW())document.querySelectorAll('[data-v="student"],[data-v="signature"]').forEach(el=>el.remove());
+  const n2=$('nav.side');if(n2)n2.scrollLeft=sl;
+  initSigPad();
+  if(S.fk){const e=document.querySelector('[data-fk="'+S.fk+'"]');if(e)e.focus();S.fk=null}
+}
+
+function viewHTML(){
+  const v=S.view,w=isW();
+  if(!allowedView(v))return ovView();
+  if(v==='overview')return ovView();
+  if(v==='outings')return w?outW():outS();
+  if(v==='verification')return verifySection();
+  if(v==='mess')return messV();
+  if(v==='student')return lookV();
+  if(v==='attendance')return w?attW():attS();
+  if(v==='issues')return issuesV();
+  if(v==='laundry')return laundryV();
+  if(v==='lostfound')return lfV();
+  if(v==='feed')return feedView();
+  if(v==='signature')return sigAndRulesView();
+  if(v==='medical')return medV();
+  return ovView();
+}
+
+/* ---------- 1. OVERVIEW (EVERY SINGLE OPTION SHOWN) ---------- */
+function ovView(){
+  const w=isW(),m=me(),t=TODAY();
+  let h=head(w?'Warden Administrative Overview':'Student Hostel Hub','Access all hostel modules, track attendance, manage outings and live updates.');
+
+  // Role Banner & Quick Switch
+  h+='<div class="panel hero h-ok"><div class="item"><div class="main">'
+   +'<div class="big">HostelPulse: '+(w?'Warden Portal Active':'Student View: '+esc(m.name))+'</div>'
+   +'<div class="line">CVR College of Engineering Hostels &bull; Tap any module card below to open that feature directly.</div>'
+   +'</div>'
+   +'<div class="btnrow">'
+   +'<span class="pill p-info">Demo account &bull; Browser storage</span>'
+   +'</div></div></div>';
+
+  // DIRECT GRID OF ALL FIRST-CLASS OPTIONS
+  h+='<h2 style="margin:20px 0 10px">All Hostel Modules & Options</h2>';
+  h+='<div class="opt-grid">'
+   +'<div class="opt-card" data-act="go" data-v="outings">'+ic('outings')+'<div><b>1. Outings & Sunday Quota</b><span>Sunday quota (3/mo, Sundays only), quota counter & blocking, holiday outings</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="verification">'+ic('pass')+'<div><b>2. Verification & Outpasses</b><span>Mentor & parent tap-to-call, locked approve button, unique outpass (CVR-OP-XXXXX), PDF download</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="mess">'+ic('mess')+'<div><b>3. Mess & Opinion Polls</b><span>Weekly menu editing, dish alerts, meal polls, custom 2-5 option polls, live voting tallies</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="student">'+ic('student')+'<div><b>4. Full Student Profile Lookup</b><span>Search by name/roll/room, personal dossier, health notes, blood group, attendance calendar</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="attendance">'+ic('attendance')+'<div><b>5. Attendance & Exports</b><span>Daily register shortcuts, landscape monthly PDF sheet, CSV phone spreadsheet export</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="lostfound">'+ic('lostfound')+'<div><b>6. Lost & Found</b><span>Broadcasts alerts to all, only reporting student can close ("I Found It"), resolution notice</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="feed">'+ic('bell')+'<div><b>7. Daily Updates Feed</b><span>Bell icon unread badge, grouped by day, category filter chips, warden announcements</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="signature">'+ic('pen')+'<div><b>8. Drawn Signature Pad & Rules</b><span>Canvas drawing pad to save warden digital signature for outpasses, timings, contacts</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="issues">'+ic('issues')+'<div><b>9. Repairs & Maintenance</b><span>Report problems, warden marks In Progress/Fixed, assigns staff, student confirms fix</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="laundry">'+ic('laundry')+'<div><b>10. Laundry & Washing Slots</b><span>Dhobi intake tracker, washing/ready status, reserve 1-hour machine 1 & 2 slots</span></div></div>'
+   +'<div class="opt-card" data-act="go" data-v="medical">'+ic('medical')+'<div><b>11. Medical SOS & Directory</b><span>Emergency medical alerts, doctor & ambulance contacts with one-tap dialing</span></div></div>'
+   +'</div>';
+
+  // Live Stats Tiles
+  const outNow=DB.outings.filter(o=>o.status==='out');
+  const late=outNow.filter(o=>overdueMin(o)>0);
+  const pendingOut=DB.outings.filter(o=>o.status==='pending'||o.status==='verifying').length;
+  const openPolls=DB.polls.filter(p=>p.status==='open').length;
+
+  h+='<div class="tiles">'
+   +tile('Students Out Right Now',String(outNow.length),late.length?late.length+' overdue':'All on schedule','outings',late.length?'bad':'')
+   +tile('Pending Outpass Requests',String(pendingOut),'Needs verification','verification',pendingOut?'warn':'ok')
+   +tile('Active Opinion Polls',String(openPolls),'Open for voting','mess')
+   +tile('Open Repair Tickets',String(DB.issues.filter(i=>i.status!=='closed').length),'Maintenance tracker','issues')
+   +tile('Unread Daily Updates',String(unreadFeedCount()),'Hostel activity stream','feed')
+   +'</div>';
+
+  return h;
+}
+
+const tile=(l,v,s,go,tone,txt)=>'<button class="tile'+(tone?' t-'+tone:'')+'" data-act="go" data-v="'+go+'"><span class="ti">'+ic(go)+'</span><span class="l">'+esc(l)+'</span><span class="v'+(txt?' txt':'')+'">'+esc(v)+'</span><span class="s">'+esc(s||'')+'</span></button>';
+
+/* ---------- 2. OUTINGS & SUNDAY QUOTA ---------- */
+function outW(){
+  const pending=DB.outings.filter(o=>o.status==='pending'||o.status==='verifying');
+  const outNow=DB.outings.filter(o=>o.status==='out');
+  const hist=DB.outings.filter(o=>['returned','rejected','cancelled','approved'].includes(o.status)).sort((a,b)=>(b.inAt||b.decidedAt||b.expectedOut).localeCompare(a.inAt||a.decidedAt||a.expectedOut)).slice(0,15);
+
+  let h=head('Outings Management & Gate Register','Verify student requests with parents & mentors, issue digital outpasses, and manage gate exits.');
+
+  h+='<div class="panel hero h-warn"><div class="item"><div class="main">'
+   +'<div class="big">'+pending.length+' Requests Waiting for Verification</div>'
+   +'<div class="line">CVR rules: 3 Sunday outings per month (Sundays only). Approve button requires mentor & parent verification.</div>'
+   +'</div><button class="btn primary" data-act="go" data-v="verification">Open Verification Screen</button></div></div>';
+
+  h+='<div class="cols">'
+   +'<div class="panel"><h2>Students Currently Outside ('+outNow.length+')</h2>'
+   +(outNow.length?'<div class="list">'+outNow.map(o=>outCard(o,'w')).join('')+'</div>':empty('No students outside right now.'))+'</div>'
+   +'<div class="panel"><h2>Record Manual Gate Exit</h2><form data-form="gate-walkin"><div class="grid2">'
+   +field('Student','<select name="roll">'+DB.students.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(s=>'<option value="'+s.roll+'">'+esc(s.name)+', room '+esc(s.room)+'</option>').join('')+'</select>')
+   +field('Destination','<input name="place" required placeholder="Hospital / Exam / Urgent work">')
+   +field('Return by','<input type="datetime-local" name="back" required value="'+lt(new Date(Date.now()+3*3600e3))+'">')
+   +field('Reason','<input name="reason" required placeholder="Reason for manual gate exit">')
+   +'</div><button class="btn primary" style="margin-top:8px">Record Exit at Gate</button></form></div>'
+   +'</div>';
+
+  h+='<div class="panel"><h2>Outing History & Digital Gate Log</h2>'+(hist.length?'<div class="list">'+hist.map(o=>outCard(o,'w')).join('')+'</div>':empty('No history on record.'))+'</div>';
+  return h;
+}
+
+function outS(){
+  const m=me(),curMonth=TODAY().slice(0,7);
+  const quotaUsed=sundayQuotaUsed(m.roll,curMonth);
+  const mine=DB.outings.filter(o=>o.roll===m.roll).sort((a,b)=>b.expectedOut.localeCompare(a.expectedOut));
+  const activeHol=DB.holidays.filter(h=>h.date>=plus(TODAY(),-3));
+
+  let h=head('Outings & Sunday Quota','Request Sunday outings, holiday outings, track approval progress, and view issued outpasses.');
+
+  // Quota counter and blocking banner
+  h+='<div class="panel hero h-'+(quotaUsed>=3?'bad':'ok')+'"><div class="item"><div class="main">'
+   +'<div class="big">Sunday Outing Quota: '+quotaUsed+' of 3 used</div>'
+   +'<div class="line">Sundays only. Once full (3/3 used), Sunday requests are blocked. Holiday outings do not use this quota.</div>'
+   +'</div><div>'+pill((3-quotaUsed)+' remaining this month',quotaUsed>=3?'bad':'ok')+'</div></div></div>';
+
+  const o0=new Date(Date.now()+30*60000);o0.setMinutes(Math.ceil(o0.getMinutes()/15)*15,0,0);
+  h+='<div class="panel"><h2>Request Outing Permission</h2><form data-form="out-new">'
+   +'<div class="grid2">'
+   +field('Outing Type','<select name="type" id="outTypeSelect">'
+     +'<option value="sunday"'+(quotaUsed>=3?' disabled':'')+'>Sunday Outing '+(quotaUsed>=3?'(Quota full: 3/3 used)':'(Sundays only)')+'</option>'
+     +'<option value="holiday">Holiday Outing (Linked to holiday notice)</option>'
+     +'<option value="general">General Outing (Emergency / Special)</option>'
+     +'</select>')
+   +field('Destination','<input name="place" required placeholder="e.g. Hyderabad / Home / Market">')
+   +'</div>'
+   +'<div id="holNoticeWrap" style="display:none">'
+   +field('Select Holiday Notice','<select name="holidayId">'+activeHol.map(x=>'<option value="'+x.id+'">'+esc(x.name)+' ('+fDate(x.date)+(x.endDate?' to '+fDate(x.endDate):'')+')</option>').join('')+'</select>')
+   +'</div>'
+   +'<div class="grid2">'
+   +field('Leaving Date & Time','<input type="datetime-local" name="out" required value="'+lt(o0)+'">')
+   +field('Return Date & Time','<input type="datetime-local" name="back" required value="'+lt(new Date(o0.getTime()+4*3600e3))+'">')
+   +'</div>'
+   +'<div class="grid2">'
+   +field('Reason for Outing','<input name="reason" required placeholder="Detailed reason for outing">')
+   +field('Emergency Contact Phone','<input name="phone" required value="'+esc(m.phone)+'" inputmode="tel">')
+   +'</div>'
+   +'<p class="note" style="margin:4px 0 12px">Warden verifies with your mentor ('+esc(m.mentorName)+') and parent ('+esc(m.parentName)+') before approving.</p>'
+   +'<button class="btn primary">Submit Outing Request</button>'
+   +'</form></div>';
+
+  h+='<div class="panel"><div class="item"><h2>My Outings & Outpasses</h2><button class="btn small primary" data-act="go" data-v="verification">View My Outpasses</button></div>'+(mine.length?'<div class="list">'+mine.map(o=>outCard(o,'s')).join('')+'</div>':empty('You have not requested any outings yet.'))+'</div>';
+  return h;
+}
+
+function outCard(o,mode){
+  const s=stu(o.roll);
+  let line='<div class="line"><b>'+esc(o.type?o.type.toUpperCase():'OUTING')+'</b> &bull; '+esc(o.place)+'</div>'
+   +'<div class="line">Leave: <b>'+fDT(o.expectedOut)+'</b> &bull; Return by: <b>'+fDT(o.expectedIn)+'</b></div>'
+   +'<div class="line">Reason: '+esc(o.reason||o.purpose||'None provided')+'</div>';
+  if(o.outpassNum)line+='<div class="line">Outpass: <span class="pill p-pri">'+esc(o.outpassNum)+'</span></div>';
+  if(o.outAt)line+='<div class="line">Gate exit: '+fTime(o.outAt)+(o.inAt?', Return: '+fTime(o.inAt):'')+'</div>';
+  if(o.rejectReason)line+='<div class="line" style="color:var(--bad)"><b>Rejection reason:</b> '+esc(o.rejectReason)+'</div>';
+
+  let acts='';
+  if(mode==='w'){
+    if(o.status==='pending'||o.status==='verifying'){
+      acts+='<button class="btn small primary" data-act="open-verify" data-id="'+o.id+'">Verify & Approve</button>';
+    }
+    if(o.status==='approved'){
+      acts+='<button class="btn small primary" data-act="view-outpass" data-id="'+o.id+'">'+ic('pass')+' View Pass</button>';
+      acts+='<button class="btn small" data-act="gate-out" data-id="'+o.id+'">Mark Left</button>';
+    }
+    if(o.status==='out'){
+      acts+='<button class="btn small primary" data-act="gate-in" data-id="'+o.id+'">Mark Returned</button>';
+    }
+  } else {
+    if(o.status==='approved'||o.status==='out'||o.status==='returned'){
+      acts+='<button class="btn small primary" data-act="view-outpass" data-id="'+o.id+'">'+ic('pass')+' View Outpass (PDF)</button>';
+    }
+    if(o.status==='pending'||o.status==='verifying'){
+      acts+='<button class="btn small" data-act="out-cancel" data-id="'+o.id+'">Cancel</button>';
+    }
+  }
+
+  return '<div class="item"><div class="main">'
+   +(mode==='w'?'<button class="linkbtn" data-act="lookup" data-roll="'+s.roll+'">'+esc(s.name)+'</button> <span class="sub">Room '+esc(s.room)+', '+tel(o.phone||s.phone)+'</span>':'')
+   +line+'</div><div class="acts">'+outStatus(o)+acts+'</div></div>';
+}
+
+/* ---------- 3. VERIFICATION & OUTPASSES ---------- */
+function verifySection(){
+  const w=isW(),m=me();
+  let h=head('Mentor & Parent Verification, Then Digital Outpass','Warden verifies contacts with tap-to-call buttons. Approve button stays locked until both are confirmed. Generates unique pass with drawn signature.');
+
+  if(S.activeOutpass){
+    h+=renderOutpassModal(S.activeOutpass,w);
+  }
+  if(S.verifyOuting){
+    h+=renderVerificationModal(S.verifyOuting);
+  }
+
+  if(w){
+    const pending=DB.outings.filter(o=>o.status==='pending'||o.status==='verifying');
+    const approved=DB.outings.filter(o=>o.status==='approved'||o.status==='out');
+    h+='<div class="panel"><h2>Requests Waiting for Verification ('+pending.length+')</h2>'
+     +(pending.length?'<div class="list">'+pending.map(o=>outCard(o,'w')).join('')+'</div>':empty('No requests pending verification.'))+'</div>';
+    h+='<div class="panel"><h2>Active Approved Outpasses ('+approved.length+')</h2>'
+     +(approved.length?'<div class="list">'+approved.map(o=>outCard(o,'w')).join('')+'</div>':empty('No approved outpasses active right now.'))+'</div>';
+  } else {
+    const myPasses=DB.outings.filter(o=>o.roll===m.roll&&['approved','out','returned'].includes(o.status));
+    h+='<div class="panel"><h2>My Official Outpasses</h2>'
+     +(myPasses.length?'<div class="list">'+myPasses.map(o=>outCard(o,'s')).join('')+'</div>':empty('No approved outpasses issued yet. Request an outing under Outings & Quota.'))+'</div>';
+  }
+
+  return h;
+}
+
+function renderVerificationModal(o){
+  const s=stu(o.roll);
+  return '<div class="panel" style="border:2px solid var(--pri);background:var(--surf)">'
+   +'<div class="item"><h2>Verify Outing Permission: '+esc(s.name)+'</h2><button class="btn small" data-act="close-verify">Close</button></div>'
+   +'<p class="sub">Room: <b>'+esc(s.room)+'</b> &bull; Roll: <b>'+esc(s.roll)+'</b> &bull; Course: <b>'+esc(s.course)+'</b></p>'
+   +'<div style="margin:12px 0;padding:12px;background:var(--soft);border-radius:8px">'
+   +'<div class="line">Destination: <b>'+esc(o.place)+'</b></div>'
+   +'<div class="line">Leave: <b>'+fDT(o.expectedOut)+'</b> &bull; Return: <b>'+fDT(o.expectedIn)+'</b></div>'
+   +'<div class="line">Reason: <b>'+esc(o.reason||o.purpose)+'</b></div>'
+   +'</div>'
+   +'<form data-form="verify-save" data-id="'+o.id+'">'
+   +'<div class="cols">'
+   +'<div class="panel" style="margin-bottom:0">'
+   +'<h3>1. Mentor Contact</h3>'
+   +'<p><b>'+esc(s.mentorName)+'</b></p>'
+   +'<div style="margin:6px 0">'+telBtn(s.mentorPhone,'Call Mentor')+'</div>'
+   +'<label style="display:flex;align-items:center;margin:8px 0;font-weight:600"><input type="checkbox" name="mentorSpoke" id="chkMentor" '+(o.mentorSpoke?'checked':'')+'> Spoke to mentor</label>'
+   +field('Mentor note (optional)','<input name="mentorNote" value="'+esc(o.mentorNote||'')+'" placeholder="e.g. Faculty confirmed permission">')
+   +'</div>'
+   +'<div class="panel" style="margin-bottom:0">'
+   +'<h3>2. Parent Contact</h3>'
+   +'<p><b>'+esc(s.parentName)+'</b></p>'
+   +'<div style="margin:6px 0">'+telBtn(s.parentPhone,'Call Parent')+'</div>'
+   +'<label style="display:flex;align-items:center;margin:8px 0;font-weight:600"><input type="checkbox" name="parentSpoke" id="chkParent" '+(o.parentSpoke?'checked':'')+'> Spoke to parent</label>'
+   +field('Parent note (optional)','<input name="parentNote" value="'+esc(o.parentNote||'')+'" placeholder="e.g. Mother verified travel details">')
+   +'</div>'
+   +'</div>'
+   +'<div style="margin-top:14px;padding:12px;background:var(--info-bg);border-radius:8px">'
+   +'<p class="sub"><b>Hard Approval Rule:</b> The Approve button stays locked and disabled until both &ldquo;spoke to mentor&rdquo; and &ldquo;spoke to parent&rdquo; are verified.</p>'
+   +'</div>'
+   +'<div class="btnrow" style="margin-top:14px">'
+   +'<button type="submit" name="act" value="approve" class="btn primary" id="btnApproveOuting" '+((o.mentorSpoke&&o.parentSpoke)?'':'disabled')+'>Approve & Issue Outpass</button>'
+   +'<button type="submit" name="act" value="save" class="btn">Save Progress (Verifying)</button>'
+   +'<button type="button" class="btn danger" data-act="open-reject" data-id="'+o.id+'">Reject Request</button>'
+   +'</div>'
+   +'</form>'
+   +'</div>';
+}
+
+function renderOutpassModal(o,isWarden){
+  const s=stu(o.roll);
+  return '<div class="panel" style="background:rgba(0,0,0,.03);padding:14px;border:2px solid var(--pri)">'
+   +'<div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px">'
+   +'<button class="btn small primary" data-act="print-outpass" data-id="'+o.id+'">'+ic('download')+' Download / Print Outpass (PDF)</button>'
+   +'<button class="btn small" data-act="close-outpass">Close</button>'
+   +'</div>'
+   +'<div class="outpass-card" id="outpass-printable">'
+   +'<div class="outpass-hdr">'
+   +'<h2>CVR COLLEGE OF ENGINEERING</h2>'
+   +'<p style="font-size:13px;color:#5A6878;margin:2px 0">Hostel Administration &bull; Official Digital Outpass</p>'
+   +'<div class="outpass-num">GATE PASS: '+esc(o.outpassNum||'CVR-OP-99999')+'</div>'
+   +'</div>'
+   +'<div class="outpass-grid">'
+   +'<div><span>Student Name:</span><br><b>'+esc(s.name)+'</b></div>'
+   +'<div><span>Roll Number:</span><br><b>'+esc(s.roll)+'</b></div>'
+   +'<div><span>Hostel & Room:</span><br><b>'+esc(s.hostel)+', '+esc(s.room)+'</b></div>'
+   +'<div><span>Course / Branch:</span><br><b>'+esc(s.course||'B.Tech')+'</b></div>'
+   +'<div><span>Leaving Date & Time:</span><br><b>'+fDT(o.expectedOut)+'</b></div>'
+   +'<div><span>Return By:</span><br><b>'+fDT(o.expectedIn)+'</b></div>'
+   +'<div><span>Destination:</span><br><b>'+esc(o.place)+'</b></div>'
+   +'<div><span>Reason:</span><br><b>'+esc(o.reason||o.purpose)+'</b></div>'
+   +'</div>'
+   +'<div class="outpass-ver">'
+   +'<div style="font-weight:700;color:#0B2F6B;margin-bottom:6px">Mandatory Contact Verifications:</div>'
+   +'<div>&bull; Mentor: <b>'+esc(s.mentorName)+'</b> ('+esc(s.mentorPhone)+') - <span class="pill p-ok">Confirmed Spoken</span> '+(o.mentorNote?'<i>('+esc(o.mentorNote)+')</i>':'')+'</div>'
+   +'<div>&bull; Parent: <b>'+esc(s.parentName)+'</b> ('+esc(s.parentPhone)+') - <span class="pill p-ok">Confirmed Spoken</span> '+(o.parentNote?'<i>('+esc(o.parentNote)+')</i>':'')+'</div>'
+   +'</div>'
+   +'<div class="outpass-sig">'
+   +'<div><span style="font-size:11px;color:#5A6878">Approved by Warden:</span><br><b>'+esc(DB.wardenAuth.name)+'</b><br><span style="font-size:11px;color:#5A6878">Decided: '+fDT(o.decidedAt||NOW())+'</span></div>'
+   +'<div style="text-align:right">'
+   +(DB.wardenSig?'<img class="sig-img" src="'+DB.wardenSig+'" alt="Warden Signature">':'<b>[Signed Digitally]</b>')
+   +'<div style="font-size:11px;color:#5A6878">Chief Warden Signature</div>'
+   +'</div>'
+   +'</div>'
+   +'</div>'
+   +'</div>';
+}
+
+/* ---------- 4. MESS & OPINION POLLS ---------- */
+const DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],MEALS=[['b','Breakfast'],['l','Lunch'],['s','Snacks'],['d','Dinner']];
+function messV(){
+  const w=isW(),m=me(),td=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()],ed=w&&S.menuEdit;
+  let h=head('Mess Menu & Opinion Polls','Warden menu changes trigger notifications & opinion polls. Live counts, percentages and student comments.');
+
+  let body=DAYS.map(d=>{
+    return '<tr'+(d===td?' style="background:var(--soft)"':'')+'><th scope="row">'+d+(d===td?' <span class="sub">today</span>':'')+'</th>'+MEALS.map(x=>{
+      const mealVal=DB.menu[d][x[0]];
+      const attachedPoll=DB.polls.find(p=>p.day===d&&p.meal===x[1]);
+      let cell='';
+      if(ed){
+        cell='<input name="'+d+'-'+x[0]+'" value="'+esc(mealVal)+'" aria-label="'+d+' '+x[1]+'" style="min-width:140px">';
+      } else {
+        cell='<div>'+esc(mealVal)+'</div>';
+        if(attachedPoll){
+          cell+='<div style="margin-top:4px"><button class="btn small '+(attachedPoll.status==='open'?'primary':'')+'" data-act="view-poll" data-id="'+attachedPoll.id+'" style="font-size:11px;min-height:24px;padding:2px 8px">'+ic('poll')+' '+(attachedPoll.status==='open'?'Poll Open':'Poll Closed')+'</button></div>';
+        } else if(w){
+          cell+='<div style="margin-top:4px"><button class="btn small" data-act="open-meal-poll" data-day="'+d+'" data-meal="'+x[1]+'" data-dish="'+esc(mealVal)+'" style="font-size:11px;min-height:24px;padding:2px 8px">+ Poll</button></div>';
+        }
+      }
+      return '<td>'+cell+'</td>';
+    }).join('')+'</tr>';
+  }).join('');
+
+  h+='<div class="panel"><div class="item"><h2>Weekly Menu</h2><div class="btnrow">'+(w&&!ed?'<button class="btn small" data-act="menu-edit">Edit Menu & Dishes</button><button class="btn small primary" data-act="open-create-poll">+ Create Custom Poll</button>':'')+'</div></div>'
+   +(ed?'<form data-form="menu-save" style="margin-top:10px"><p class="note" style="margin-bottom:10px">When you change a dish, students are notified in their feed. You can attach a poll below.</p>':'')
+   +'<div class="scroll" style="margin-top:10px"><table><thead><tr><th>Day</th>'+MEALS.map(x=>'<th>'+x[1]+'</th>').join('')+'</tr></thead><tbody>'+body+'</tbody></table></div>'
+   +(ed?'<div class="btnrow" style="margin-top:14px"><button class="btn primary">Save Changes & Notify Students</button><button type="button" class="btn" data-act="menu-cancel">Cancel</button></div></form>':'')
+   +'</div>';
+
+  if(w&&S.createPollOpen){
+    h+='<div class="panel" style="border:2px solid var(--pri)"><h2>Create New Opinion Poll</h2>'
+     +'<form data-form="poll-new-custom">'
+     +field('Poll Title / Question','<input name="title" required placeholder="e.g. Which sweet on Sunday?">')
+     +field('Attach to meal (optional)','<select name="mealOpt"><option value="">Standalone hostel poll</option>'+DAYS.map(d=>MEALS.map(m=>'<option value="'+d+'|'+m[1]+'">'+d+' - '+m[1]+'</option>').join('')).join('')+'</select>')
+     +'<p class="sub" style="margin-bottom:6px"><b>Options (2 to 5 options):</b></p>'
+     +'<div class="grid2">'
+     +field('Option 1','<input name="opt1" required placeholder="Option 1">')
+     +field('Option 2','<input name="opt2" required placeholder="Option 2">')
+     +field('Option 3 (optional)','<input name="opt3" placeholder="Option 3">')
+     +field('Option 4 (optional)','<input name="opt4" placeholder="Option 4">')
+     +field('Option 5 (optional)','<input name="opt5" placeholder="Option 5">')
+     +'</div>'
+     +'<div class="btnrow" style="margin-top:10px"><button class="btn primary">Publish Poll to Students</button><button type="button" class="btn" data-act="close-create-poll">Cancel</button></div>'
+     +'</form></div>';
+  }
+
+  if(w&&S.pollModalMeal){
+    const pm=S.pollModalMeal;
+    h+='<div class="panel" style="border:2px solid var(--pri)"><h2>Attach Meal Poll for '+esc(pm.day)+' '+esc(pm.meal)+'</h2>'
+     +'<p class="sub" style="margin-bottom:12px">Dish: <b>'+esc(pm.dish)+'</b></p>'
+     +'<form data-form="poll-attach-meal">'
+     +'<input type="hidden" name="day" value="'+esc(pm.day)+'">'
+     +'<input type="hidden" name="meal" value="'+esc(pm.meal)+'">'
+     +'<input type="hidden" name="dish" value="'+esc(pm.dish)+'">'
+     +field('Poll Question','<input name="title" required value="Are you okay with this curry? ('+esc(pm.dish)+')">')
+     +'<div class="btnrow" style="margin-top:10px"><button class="btn primary">Attach Standard Poll (Liked it / It\'s okay / Not good)</button><button type="button" class="btn" data-act="close-meal-poll">Cancel</button></div>'
+     +'</form></div>';
+  }
+
+  h+='<div class="panel"><h2>Hostel Opinion Polls</h2>';
+  if(!DB.polls.length){
+    h+=empty('No opinion polls created yet.');
+  } else {
+    h+='<div class="list">'+DB.polls.map(p=>renderPollCard(p,w,m)).join('')+'</div>';
+  }
+  h+='</div>';
+
+  if(!w){
+    h+='<div class="panel"><h2>Send Mess Feedback</h2><form data-form="fb-new"><div class="grid2">'+field('This is a','<select name="type">'+opts(['Complaint','Requirement','Opinion'])+'</select>')+field('About','<select name="meal">'+opts(['General','Breakfast','Lunch','Snacks','Dinner'])+'</select>')+'</div>'+field('Your message','<textarea name="text" required placeholder="Describe what you liked or what needs improvement"></textarea>')+'<button class="btn primary">Send feedback</button></form></div>';
+  }
+
+  return h;
+}
+
+function renderPollCard(p,w,m){
+  const totStu=DB.students.length;
+  const votesObj=p.votes||{};
+  const voters=Object.keys(votesObj);
+  const respCount=voters.length;
+  const respPct=totStu?Math.round(respCount*100/totStu):0;
+  const counts=p.options.map((_,idx)=>voters.filter(v=>votesObj[v].opt===idx).length);
+  const myVote=m&&votesObj[m.roll]?votesObj[m.roll]:null;
+
+  let h='<div class="poll-box"><div class="item"><div class="main"><b>'+esc(p.title)+'</b> <span class="sub">'+(p.day&&p.meal?p.day+' '+p.meal:'General')+'</span>'
+   +'<div class="line">'+pill(p.status==='open'?'Open for voting':'Closed',p.status==='open'?'ok':'info')+' &bull; <b>'+respCount+' of '+totStu+'</b> students voted ('+respPct+'%)</div>'
+   +'</div>';
+
+  if(w){
+    h+='<div class="acts">';
+    if(p.status==='open'){
+      h+='<button class="btn small" data-act="poll-toggle-status" data-id="'+p.id+'" data-to="closed">Close Poll</button>';
+    } else {
+      h+='<button class="btn small primary" data-act="poll-toggle-status" data-id="'+p.id+'" data-to="open">Reopen Poll</button>';
+    }
+    h+='<button class="btn small danger" data-act="poll-delete" data-id="'+p.id+'">Delete</button>';
+    h+='</div>';
+  }
+  h+='</div>';
+
+  if(!w){
+    if(p.status==='open'){
+      h+='<div style="margin-top:12px"><p class="sub" style="margin-bottom:6px">Tap an option to cast or update your vote:</p>';
+      p.options.forEach((opt,idx)=>{
+        const isSelected=myVote&&myVote.opt===idx;
+        const optVotes=counts[idx];
+        const optPct=respCount?Math.round(optVotes*100/respCount):0;
+        h+='<div class="poll-opt"><button type="button" class="poll-opt-btn'+(isSelected?' voted':'')+'" data-act="poll-vote" data-id="'+p.id+'" data-opt="'+idx+'">'
+          +'<span>'+(isSelected?ic('check')+' ':'')+esc(opt)+'</span>'
+          +'<span>'+optVotes+' ('+optPct+'%)</span>'
+          +'</button><div class="poll-prog"><div class="poll-prog-fill" style="width:'+optPct+'%"></div></div></div>';
+      });
+      h+='<form data-form="poll-comment" data-id="'+p.id+'" style="margin-top:8px;display:flex;gap:8px">'
+        +'<input name="comment" value="'+esc(myVote?myVote.comment:'')+'" placeholder="Optional comment for the warden" style="min-height:36px;padding:6px 10px">'
+        +'<button class="btn small primary" style="flex:none">Save Comment</button>'
+        +'</form>';
+      h+='</div>';
+    } else {
+      h+='<p class="note">This poll is closed. Final results:</p>';
+      p.options.forEach((opt,idx)=>{
+        const optVotes=counts[idx];
+        const optPct=respCount?Math.round(optVotes*100/respCount):0;
+        h+='<div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>'+esc(opt)+'</span><b>'+optVotes+' ('+optPct+'%)</b></div><div class="poll-prog"><div class="poll-prog-fill" style="width:'+optPct+'%"></div></div></div>';
+      });
+    }
+  } else {
+    h+='<div style="margin-top:12px">';
+    p.options.forEach((opt,idx)=>{
+      const optVotes=counts[idx];
+      const optPct=respCount?Math.round(optVotes*100/respCount):0;
+      h+='<div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:14px"><span><b>'+esc(opt)+'</b></span><span>'+optVotes+' votes ('+optPct+'%)</span></div><div class="poll-prog"><div class="poll-prog-fill" style="width:'+optPct+'%"></div></div></div>';
+    });
+    const comments=voters.filter(v=>votesObj[v].comment).map(v=>({voter:stu(v),comment:votesObj[v].comment,optName:p.options[votesObj[v].opt]}));
+    h+='<details style="margin-top:12px"><summary>Student Comments ('+comments.length+')</summary>';
+    if(!comments.length){
+      h+=empty('No student comments submitted.');
+    } else {
+      h+='<div class="list" style="margin-top:6px">'+comments.map(c=>'<div><b>'+esc(c.voter.name)+'</b> <span class="sub">Room '+esc(c.voter.room)+' ('+esc(c.optName)+')</span><div class="line">&ldquo;'+esc(c.comment)+'&rdquo;</div></div>').join('')+'</div>';
+    }
+    h+='</details></div>';
+  }
+
+  h+='</div>';
+  return h;
+}
+
+/* ---------- 5. FULL STUDENT PROFILE LOOKUP ---------- */
+function allStats(roll){
+  const t=TODAY(),c={P:0,A:0,O:0,L:0};
+  Object.keys(DB.att).concat([t]).filter((k,i,r)=>r.indexOf(k)===i&&k<=t).forEach(k=>{const v=sOf(roll,k);if(v)c[v]++});
+  const den=c.P+c.A+c.O;return {c,tot:den+c.L,pct:den?Math.round(c.P*1000/den)/10:null};
+}
+
+function lookV(){
+  let h=head('Full Student Profile Lookup','Search students by name, roll number, or room to see their complete profile, contacts, attendance, outings, and repairs.');
+
+  h+='<div class="panel"><form class="tools" data-form="lookup" style="margin:0">'
+   +field('Search by Name, Roll No, or Room','<input name="roll" list="rolls" value="'+esc(S.lookQ)+'" placeholder="e.g. Ananya Reddy or 25B81A0510 or A-101" autocomplete="off" required>')
+   +'<datalist id="rolls">'+DB.students.map(x=>'<option value="'+x.roll+'">'+esc(x.name)+' ('+esc(x.room)+')</option>').join('')+'</datalist>'
+   +'<div class="field" style="flex:0 0 auto;min-width:0"><button class="btn primary">Search Profile</button></div>'
+   +'</form></div>';
+
+  const s=DB.students.find(x=>x.roll===S.lookRoll)||DB.students[0];
+  const r=s.roll,w=where(r),st=allStats(r),ym=S.lookMonth,a=ym.split('-').map(Number),n=new Date(a[0],a[1],0).getDate(),off=new Date(a[0],a[1]-1,1).getDay();
+  const lab=new Date(a[0],a[1]-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'}),ms=stats(r,ym);
+  const outs=DB.outings.filter(o=>o.roll===r).sort((x,y)=>y.expectedOut.localeCompare(x.expectedOut));
+  const lateN=outs.filter(isLate).length;
+  const iss=DB.issues.filter(i=>i.roll===r).sort((x,y)=>y.createdAt.localeCompare(x.createdAt));
+  const lf=DB.lf.filter(x=>x.roll===r||x.foundBy===r||x.claimedBy===r).slice().reverse();
+
+  h+='<div class="panel hero h-'+w.tone+'"><div class="item"><div class="main">'
+   +'<h2 style="font-size:22px">'+esc(s.name)+'</h2>'
+   +'<div class="line"><b>'+esc(s.roll)+'</b> &bull; '+esc(s.hostel)+', Room <b>'+esc(s.room)+'</b> &bull; Course: <b>'+esc(s.course)+'</b></div>'
+   +'<div class="line">Student Phone: '+tel(s.phone)+'</div>'
+   +'</div><div><b>'+esc(w.t)+'</b><div class="line">'+esc(w.d)+'</div><div style="margin-top:6px">Tonight: '+attPill(sOf(r,TODAY()))+'</div></div></div></div>';
+
+  h+='<div class="cols">'
+   +'<div class="panel"><h3>Personal & Health Notes</h3>'
+   +'<div class="line">Blood Group: <span class="pill p-bad">'+esc(s.blood||'Not specified')+'</span></div>'
+   +'<div class="line">Health Notes: <b>'+esc(s.healthNote||'None reported')+'</b></div>'
+   +'<div class="line">Permanent Home Address:<br><b>'+esc(s.address||'Campus Hostel Resident')+'</b></div>'
+   +'</div>'
+   +'<div class="panel"><h3>Mentor & Parent Contacts (Tap to Call)</h3>'
+   +'<div style="margin-bottom:10px"><div>Mentor: <b>'+esc(s.mentorName)+'</b></div>'+telBtn(s.mentorPhone,'Call Mentor')+'</div>'
+   +'<div><div>Parent / Guardian: <b>'+esc(s.parentName)+'</b></div>'+telBtn(s.parentPhone,'Call Parent')+'</div>'
+   +'</div>'
+   +'</div>';
+
+  h+='<div class="panel">'
+   +'<div class="item"><h2>Month-wise Attendance</h2>'
+   +'<button class="btn small primary" data-act="download-student-att-pdf" data-roll="'+s.roll+'" data-month="'+ym+'">'+ic('download')+' Download '+lab+' Attendance (PDF)</button>'
+   +'</div>'
+   +'<div class="stats" style="margin-top:12px">'
+   +'<div class="stat '+(st.pct==null?'':st.pct>=75?'ok':'bad')+'"><b>'+(st.pct==null?'-':st.pct+'%')+'</b><span>Overall Pct</span></div>'
+   +'<div class="stat ok"><b>'+st.c.P+'</b><span>Present</span></div>'
+   +'<div class="stat bad"><b>'+st.c.A+'</b><span>Absent</span></div>'
+   +'<div class="stat warn"><b>'+st.c.O+'</b><span>Outing</span></div>'
+   +'<div class="stat info"><b>'+st.c.L+'</b><span>Leave</span></div>'
+   +'<div class="stat '+(lateN?'warn':'')+'"><b>'+lateN+'</b><span>Late Returns</span></div>'
+   +'</div>'
+   +'<div class="calnav"><button class="btn small" data-act="look-month" data-d="-1">&#8249;</button><b>'+lab+': '+ms.P+' present, '+ms.A+' absent ('+(ms.pct==null?'-':ms.pct+'%')+')</b><button class="btn small" data-act="look-month" data-d="1"'+(ym>=TODAY().slice(0,7)?' disabled':'')+'>&#8250;</button></div>'
+   +'<div class="cal" style="margin-top:10px">'
+   +['S','M','T','W','T','F','S'].map(x=>'<div class="dow">'+x+'</div>').join('')+'<span class="blank"></span>'.repeat(off);
+  for(let i=1;i<=n;i++){
+    const k=ym+'-'+pad(i),f=k>TODAY(),v=f?null:sOf(r,k);
+    h+='<button type="button" tabindex="-1" class="'+(f?'fut':v?'c-'+v:'')+(k===TODAY()?' today':'')+'">'+i+'</button>';
+  }
+  h+='</div></div>';
+
+  h+='<div class="panel"><h2>Outing History ('+outs.length+')</h2>'
+   +(outs.length?'<div class="scroll"><table><thead><tr><th>Date</th><th>Type</th><th>Destination</th><th>Leave</th><th>Return</th><th>Pass No</th><th>Status</th></tr></thead><tbody>'
+     +outs.map(o=>'<tr><td>'+fDate(o.expectedOut)+'</td><td>'+esc(o.type||'general')+'</td><td>'+esc(o.place)+'</td><td>'+fTime(o.expectedOut)+'</td><td>'+fTime(o.expectedIn)+'</td><td><b>'+esc(o.outpassNum||'-')+'</b></td><td>'+outStatus(o)+'</td></tr>').join('')
+     +'</tbody></table></div>':empty('No outing records for this student.'))
+   +'</div>';
+
+  h+='<div class="cols">'
+   +'<div class="panel"><h2>Repairs Reported ('+iss.length+')</h2>'
+   +(iss.length?'<div class="list">'+iss.map(i=>'<div><div class="item"><div class="main"><b>'+esc(i.cat)+'</b> at '+esc(i.where)+'<div class="line">'+esc(i.text)+'</div></div><div>'+pill(i.status,i.status==='fixed'?'ok':'warn')+'</div></div></div>').join('')+'</div>':empty('No repair requests.'))
+   +'</div>'
+   +'<div class="panel"><h2>Lost & Found Reports ('+lf.length+')</h2>'
+   +(lf.length?'<div class="list">'+lf.map(x=>'<div><div class="item"><div class="main"><b>'+esc(x.item)+'</b> ('+esc(x.kind)+')<div class="line">'+esc(x.place)+'</div></div><div>'+pill(x.status,x.status==='returned'?'ok':'warn')+'</div></div></div>').join('')+'</div>':empty('No lost and found activity.'))
+   +'</div>'
+   +'</div>';
+
+  return h;
+}
+
+/* ---------- 6. ATTENDANCE & EXPORTS ---------- */
+function attW(){
+  let h=head('Attendance & Monthly Exports','Night roll call shortcuts, and full monthly sheet exports in PDF (landscape) and CSV.');
+  h+='<div class="tabs"><button class="tab" aria-pressed="'+(S.attTab==='roll')+'" data-act="att-tab" data-v="roll">Night Roll Call</button><button class="tab" aria-pressed="'+(S.attTab==='reg')+'" data-act="att-tab" data-v="reg">Monthly Register & Exports</button></div>';
+  return h+(S.attTab==='roll'?rollcallV():registerV());
+}
+
+function roster(){
+  const q=S.attQ.trim().toLowerCase();
+  return DB.students.filter(s=>(S.attHostel==='all'||s.hostel===S.attHostel)&&(!q||s.name.toLowerCase().includes(q)||s.roll.toLowerCase().includes(q)||s.room.toLowerCase().includes(q)))
+   .sort((a,b)=>a.room.localeCompare(b.room,'en',{numeric:true})||a.name.localeCompare(b.name));
+}
+
+function rollRows(){
+  const d=S.attDate,l=roster();
+  if(!l.length)return empty('No student matches this filter.');
+  return '<div class="list">'+l.map(s=>{
+    const v=sOf(s.roll,d);
+    return '<div class="rc-row"><div class="who"><button class="linkbtn" data-act="lookup" data-roll="'+s.roll+'">'+esc(s.name)+'</button><div class="sub"><span>Room '+esc(s.room)+'</span><span>'+esc(s.roll)+'</span></div></div><div class="seg" role="group" aria-label="Status for '+esc(s.name)+'">'
+     +['P','A','O','L'].map(k=>'<button type="button" class="seg-b s-'+k+(v===k?' on':'')+'" aria-pressed="'+(v===k)+'" data-act="mark" data-roll="'+s.roll+'" data-date="'+d+'" data-st="'+k+'" data-fk="rc-'+s.roll+'-'+k+'">'+ATT[k][0]+'</button>').join('')+'</div></div>';
+  }).join('')+'</div>';
+}
+
+function rollcallV(){
+  const d=S.attDate,all=DB.students,c={P:0,A:0,O:0,L:0,N:0};
+  all.forEach(s=>c[sOf(s.roll,d)||'N']++);
+  const fin=DB.rollcall[d];
+  let h='<div class="tools">'+field('Date','<input type="date" value="'+d+'" max="'+TODAY()+'" min="'+ymd(plus(new Date(),-45))+'" data-set="attDate">')
+   +field('Hostel','<select data-set="attHostel"><option value="all">All hostels</option>'+['Hostel A','Hostel B'].map(x=>'<option'+(S.attHostel===x?' selected':'')+'>'+x+'</option>').join('')+'</select>')
+   +field('Search','<input type="search" id="attq" value="'+esc(S.attQ)+'" placeholder="Name, room or roll no." data-live="attQ">')+'</div>';
+  h+='<div class="chips"><span class="chip">Present <b>'+c.P+'</b></span><span class="chip">Absent <b>'+c.A+'</b></span><span class="chip">Outing <b>'+c.O+'</b></span><span class="chip">Leave <b>'+c.L+'</b></span><span class="chip">Not marked <b>'+c.N+'</b></span></div>';
+
+  h+='<div class="panel"><div class="btnrow" style="margin-bottom:12px">'
+   +'<button class="btn primary" data-act="mark-all-present" data-date="'+d+'">'+ic('check')+' Mark Everyone Else Present</button>'
+   +'<button class="btn" data-act="mark-approved-out" data-date="'+d+'">'+ic('outings')+' Mark Approved Outings as Out</button>'
+   +'<button class="btn" data-act="finish" data-date="'+d+'"'+(c.N?' disabled':'')+'>'+(fin?'Update Roll Call':'Finish Roll Call')+'</button>'
+   +(c.A?'<button class="btn" data-act="copy-abs" data-date="'+d+'">Copy Absentee List</button>':'')+'</div>'
+   +(c.N?'<p class="note" style="margin:-4px 0 12px">'+c.N+' student'+(c.N>1?'s are':' is')+' not marked yet.</p>':'')
+   +(fin?'<p class="note" style="margin:-4px 0 12px">Roll call completed at '+fTime(fin.at)+'.</p>':'')
+   +'<div id="rolllist">'+rollRows()+'</div></div>';
+  return h;
+}
+
+function registerV(){
+  const ym=S.attMonth,a=ym.split('-').map(Number),n=new Date(a[0],a[1],0).getDate(),list=roster();
+  const lab=new Date(a[0],a[1]-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+
+  let h='<div class="tools"><div class="btnrow"><button class="btn" data-act="month" data-d="-1">Previous</button><b style="min-width:130px;text-align:center">'+lab+'</b><button class="btn" data-act="month" data-d="1"'+(ym>=TODAY().slice(0,7)?' disabled':'')+'>Next</button></div>'
+   +field('Hostel','<select data-set="attHostel"><option value="all">All hostels</option>'+['Hostel A','Hostel B'].map(x=>'<option'+(S.attHostel===x?' selected':'')+'>'+x+'</option>').join('')+'</select>')
+   +'<div class="btnrow" style="margin-left:auto">'
+   +'<button class="btn primary" data-act="export-hostel-pdf" data-month="'+ym+'">'+ic('download')+' Download Full Month PDF (Landscape)</button>'
+   +'<button class="btn" data-act="export-hostel-csv" data-month="'+ym+'">'+ic('download')+' Download CSV (Phone compatible)</button>'
+   +'</div>'
+   +'</div>';
+
+  let th='<tr><th class="left">Roll No</th><th class="left">Student Name</th><th>Room</th>';
+  for(let i=1;i<=n;i++){const k=ym+'-'+pad(i);th+='<th class="'+(k===TODAY()?'today':'')+'">'+i+'</th>'}
+  th+='<th>P</th><th>A</th><th>O</th><th>L</th><th>%</th></tr>';
+  const rows=list.map(s=>{
+    let r='<tr><td class="left">'+esc(s.roll)+'</td><td class="left"><button class="linkbtn" data-act="lookup" data-roll="'+s.roll+'"><b>'+esc(s.name)+'</b></button></td><td>'+esc(s.room)+'</td>';
+    for(let i=1;i<=n;i++){
+      const k=ym+'-'+pad(i);
+      if(k>TODAY()){r+='<td class="fut"></td>';continue}
+      const v=sOf(s.roll,k);
+      r+='<td class="'+(v?'c-'+v:'')+'"><button data-act="cycle" data-roll="'+s.roll+'" data-date="'+k+'" data-fk="reg-'+s.roll+'-'+i+'">'+(v||'')+'</button></td>';
+    }
+    const st=stats(s.roll,ym);
+    return r+'<td class="sum">'+st.P+'</td><td class="sum">'+st.A+'</td><td class="sum">'+st.O+'</td><td class="sum">'+st.L+'</td><td class="sum"><b>'+(st.pct==null?'-':st.pct+'%')+'</b></td></tr>';
+  }).join('');
+
+  h+='<div class="scroll"><table class="reg"><thead>'+th+'</thead><tbody>'+rows+'</tbody></table></div>';
+  return h;
+}
+
+function attS(){
+  const m=me(),w=where(m.roll),t=TODAY(),ym=S.attMonth,a=ym.split('-').map(Number);
+  const n=new Date(a[0],a[1],0).getDate(),off=new Date(a[0],a[1]-1,1).getDay();
+  const lab=new Date(a[0],a[1]-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+  const c={P:0,A:0,O:0,L:0};
+  Object.keys(DB.att).concat([t]).filter((k,i,r)=>r.indexOf(k)===i&&k<=t).forEach(k=>{const v=sOf(m.roll,k);if(v)c[v]++});
+  const den=c.P+c.A+c.O,pct=den?Math.round(c.P*1000/den)/10:null,tot=den+c.L,C=2*Math.PI*52;
+  const tone=pct==null?'var(--line)':pct>=75?'var(--ok)':'var(--bad)';
+  const fin=DB.rollcall[t],v0=sOf(m.roll,t);
+
+  let h=head('My Attendance Record');
+  h+='<div class="panel hero h-'+w.tone+'"><div class="item"><div class="main"><div class="big">'+esc(w.t)+'</div><div class="line">'+esc(w.d)+'</div></div><div>'+attPill(v0)+'<div class="sub" style="margin-top:4px;text-align:right">'+(fin?'Roll call done at '+fTime(fin.at):'Tonight\'s roll call pending')+'</div></div></div></div>';
+
+  h+='<div class="panel"><div class="item"><h2>Overall Statistics</h2><button class="btn small primary" data-act="download-student-att-pdf" data-roll="'+m.roll+'" data-month="'+ym+'">'+ic('download')+' Download '+lab+' Report (PDF)</button></div>'
+   +'<div class="ringwrap" style="margin-top:10px"><svg class="ring" viewBox="0 0 120 120" role="img" aria-label="Overall attendance '+(pct==null?'not available':pct+' percent')+'"><circle cx="60" cy="60" r="52" fill="none" stroke-width="11" style="stroke:var(--info-bg)"/>'
+   +(pct==null?'':'<circle cx="60" cy="60" r="52" fill="none" stroke-width="11" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="'+(C*pct/100).toFixed(1)+' '+C.toFixed(1)+'" style="stroke:'+tone+'"/>')
+   +'<text x="60" y="64" text-anchor="middle" style="fill:var(--ink);font:700 21px var(--font)">'+(pct==null?'No data':pct+'%')+'</text><text x="60" y="80" text-anchor="middle" style="fill:var(--mute);font:400 9px var(--font)">Overall</text></svg></div>'
+   +'<p class="note" style="text-align:center">Nights present out of nights marked. Leave days are not counted. Below 75% shows in red.</p></div>';
+
+  h+='<div class="stats"><div class="stat ok"><b>'+c.P+'</b><span>Present</span></div><div class="stat bad"><b>'+c.A+'</b><span>Absent</span></div><div class="stat warn"><b>'+c.O+'</b><span>Outing</span></div><div class="stat info"><b>'+c.L+'</b><span>Leave</span></div><div class="stat"><b>'+tot+'</b><span>Total Marked</span></div></div>';
+
+  h+='<div class="panel"><div class="calnav"><button class="btn small" data-act="month" data-d="-1">&#8249;</button><h2>'+lab+'</h2><button class="btn small" data-act="month" data-d="1"'+(ym>=t.slice(0,7)?' disabled':'')+'>&#8250;</button></div>'
+   +'<div class="cal" style="margin-top:12px">'
+   +['S','M','T','W','T','F','S'].map(x=>'<div class="dow">'+x+'</div>').join('')+'<span class="blank"></span>'.repeat(off);
+  for(let i=1;i<=n;i++){
+    const k=ym+'-'+pad(i),f=k>t,s=f?null:sOf(m.roll,k);
+    h+='<button class="'+(f?'fut':s?'c-'+s:'')+(k===t?' today':'')+(S.selDay===k?' sel':'')+'" '+(f?'disabled':'data-act="day" data-date="'+k+'"')+'>'+i+'</button>';
+  }
+  h+='</div>';
+
+  if(S.selDay&&S.selDay.slice(0,7)===ym){
+    const s=sOf(m.roll,S.selDay);
+    h+='<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line)"><h3>'+fDay(S.selDay)+'</h3><p style="margin-top:4px">'+attPill(s)+'</p>'
+     +((s==='A'||!s)?'<div class="btnrow" style="margin-top:8px"><button class="btn small" data-act="query-day" data-date="'+S.selDay+'">Ask warden to check this day</button></div>':'')+'</div>';
+  }
+  h+='</div>';
+
+  return h;
+}
+
+/* ---------- 7. REPAIRS & MAINTENANCE ---------- */
+const ISS={reported:['Reported','warn'],assigned:['In Progress','info'],visit:['Visit Scheduled','pri'],fixed:['Fixed','ok'],closed:['Closed','ok']};
+const tlist=l=>'<ul class="tl">'+(l||[]).map(x=>'<li>'+esc(x.text||'')+'<span>'+fDT(x.at)+'</span></li>').join('')+'</ul>';
+function issuesV(){
+  const w=isW(),m=me();
+  let list=DB.issues.filter(i=>w||(m&&i.roll===m.roll));
+  if(S.issueFilter==='open')list=list.filter(i=>i.status!=='closed');
+  list=list.slice().sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+
+  let h=head('Repairs & Maintenance Tracker','Report maintenance problems with location and description. Warden is alerted immediately and updates status.');
+
+  if(!w){
+    h+='<div class="panel"><h2>Report a Maintenance Problem</h2><form data-form="issue-new"><div class="grid2">'
+     +field('Issue Category','<select name="cat">'+opts(['Electrical','Plumbing','Carpentry','Internet','Cleaning','Other'])+'</select>')
+     +field('Urgency Level','<select name="pri">'+opts(['Normal','Urgent','Low'])+'</select>')+'</div>'
+     +field('Location / Room','<input name="where" required value="'+esc(m?m.room:'')+'" placeholder="Room A-101 or 2nd floor corridor">')
+     +field('Description of the problem','<textarea name="text" required placeholder="Describe what is broken, leaking, or not working..."></textarea>')
+     +field('Photo (optional)','<input type="file" name="photo" accept="image/*">')
+     +'<button class="btn primary" style="margin-top:6px">Submit Repair Request</button></form></div>';
+  } else {
+    h+='<div class="panel"><div class="item"><h2>Log a Maintenance Problem</h2><button class="btn small" data-act="toggle-warden-issue">+ Log New Repair</button></div>'
+     +(S.wardenIssueOpen?'<form data-form="issue-warden-new" style="margin-top:12px"><div class="grid2">'
+       +field('Student / Room','<select name="roll">'+DB.students.slice().sort((a,b)=>a.room.localeCompare(b.room,'en',{numeric:true})).map(s=>'<option value="'+s.roll+'">'+esc(s.name)+' (Room '+esc(s.room)+')</option>').join('')+'</select>')
+       +field('Issue Category','<select name="cat">'+opts(['Electrical','Plumbing','Carpentry','Internet','Cleaning','Other'])+'</select>')
+       +'</div><div class="grid2">'
+       +field('Location / Room','<input name="where" required placeholder="e.g. Washroom 2nd floor / Room A-105">')
+       +field('Urgency Level','<select name="pri">'+opts(['Normal','Urgent','Low'])+'</select>')
+       +'</div>'
+       +field('Description of the problem','<textarea name="text" required placeholder="Detailed description..."></textarea>')
+       +'<button class="btn primary" style="margin-top:6px">Log Repair</button></form>':'')
+     +'</div>';
+  }
+
+  h+='<div class="tools">'+field('Filter Repairs','<select data-set="issueFilter"><option value="open"'+(S.issueFilter==='open'?' selected':'')+'>Open / In Progress</option><option value="all"'+(S.issueFilter==='all'?' selected':'')+'>All Repairs</option></select>')+'</div>';
+
+  h+='<div class="panel">'+(list.length?'<div class="list">'+list.map(i=>{
+    const s=stu(i.roll),p=ISS[i.status]||['Reported','warn'];
+    return '<div><div class="item"><div class="main"><b>'+esc(i.cat)+'</b> at <b>'+esc(i.where)+'</b>'+(w?' <span class="sub">by '+esc(s.name)+' (Room '+esc(s.room)+')</span>':'')
+     +'<div class="line">'+esc(i.text)+'</div>'
+     +'<div class="line">'+(i.staff?'Assigned to: <b>'+esc(i.staff)+'</b>':'Unassigned')+(i.visit?', Visit: '+fDT(i.visit):'')+'</div>'
+     +(i.photo?'<img class="photo" src="'+i.photo+'" alt="Photo of the problem">':'')+'</div>'
+     +'<div class="acts">'+pill(i.pri,i.pri==='Urgent'?'bad':'info')+pill(p[0],p[1])+'</div></div>'
+     +'<details><summary>Status Timeline ('+i.log.length+' updates)</summary>'+tlist(i.log)+'</details>'
+     +(w&&i.status!=='closed'?'<div style="margin-top:10px;padding:12px;background:var(--soft);border-radius:8px">'
+        +'<div class="btnrow" style="margin-bottom:10px">'
+        +(i.status!=='assigned'?'<button class="btn small" data-act="repair-status" data-id="'+i.id+'" data-st="assigned">Mark In Progress</button>':'')
+        +(i.status!=='fixed'?'<button class="btn small primary" data-act="repair-status" data-id="'+i.id+'" data-st="fixed">Mark Fixed</button>':'')
+        +(i.status!=='reported'?'<button class="btn small" data-act="repair-status" data-id="'+i.id+'" data-st="reported">Reopen to Reported</button>':'')
+        +'</div>'
+        +'<form data-form="issue-assign" data-id="'+i.id+'"><div class="grid2">'
+        +field('Assign Maintenance Staff','<select name="staff"><option value="">Select staff</option>'+DB.staff.map(x=>{const v=x.name+' ('+x.role.toLowerCase()+')';return '<option'+(i.staff===v?' selected':'')+'>'+esc(v)+'</option>'}).join('')+'</select>')
+        +field('Schedule Visit Time','<input type="datetime-local" name="visit" value="'+esc(i.visit||'')+'">')+'</div>'
+        +field('Timeline Note for Student','<input name="note" placeholder="e.g. Electrician will visit after 4 PM">')
+        +'<button class="btn small primary">Save Staff Assignment & Notify Student</button></form></div>':'')
+     +(!w&&i.status==='fixed'?'<div class="btnrow" style="margin-top:10px;padding:10px;background:var(--ok-bg);border-radius:8px"><span style="font-weight:600;color:var(--ok)">Warden marked this fixed. Please confirm:</span> <button class="btn small primary" data-act="iss-confirm" data-id="'+i.id+'">Yes, Confirm Fixed (Close)</button><button class="btn small" data-act="iss-reopen" data-id="'+i.id+'">Not Fixed Yet</button></div>':'')+'</div>';
+  }).join('')+'</div>':empty('No repair requests on record.'))+'</div>';
+
+  return h;
+}
+
+/* ---------- 8. LAUNDRY & MACHINE SLOTS ---------- */
+const LS={given:['Given to dhobi','info'],washing:['Washing','warn'],ready:['Ready to collect','ok'],collected:['Collected','info']};
+function laundryV(){
+  const w=isW(),m=me();
+  let list=DB.laundry.filter(l=>w||(m&&l.roll===m.roll)).slice().sort((a,b)=>b.at.localeCompare(a.at));
+  if(w)list=list.filter(l=>l.status!=='collected').concat(list.filter(l=>l.status==='collected').slice(0,8));
+  let h=head('Laundry & Washing Machine Booking','Track your clothes with the dhobi and reserve washing machine slots.');
+
+  if(!w){
+    h+='<div class="panel"><h2>Give Clothes to Dhobi</h2><form data-form="laundry-new"><div class="grid2">'+field('Number of items','<input type="number" name="items" min="1" max="60" required placeholder="e.g. 10">')+field('Bag number or identifier note','<input name="note" placeholder="e.g. Blue bag #12">')+'</div><button class="btn primary">Add to Dhobi Tracker</button></form></div>';
+  } else {
+    h+='<div class="panel"><div class="item"><h2>Record Laundry Intake</h2><button class="btn small" data-act="toggle-warden-laundry">+ Record Clothes Given</button></div>'
+     +(S.wardenLauOpen?'<form data-form="laundry-warden-new" style="margin-top:12px"><div class="grid3">'
+       +field('Student','<select name="roll">'+DB.students.slice().sort((a,b)=>a.room.localeCompare(b.room,'en',{numeric:true})).map(s=>'<option value="'+s.roll+'">'+esc(s.name)+' (Room '+esc(s.room)+')</option>').join('')+'</select>')
+       +field('Items Count','<input type="number" name="items" min="1" max="60" required value="10">')
+       +field('Bag Note','<input name="note" placeholder="Bag tag or mark">')
+       +'</div><button class="btn primary">Record Intake</button></form>':'')
+     +'</div>';
+  }
+
+  h+='<div class="panel"><h2>'+(w?'Dhobi Intake & Delivery Tracker':'My Laundry Status')+'</h2>'+(list.length?'<div class="list">'+list.map(l=>{
+    const s=stu(l.roll),p=LS[l.status]||['Given','info'];let a='';
+    if(w){
+      if(l.status==='given')a='<button class="btn small" data-act="laundry-next" data-id="'+l.id+'" data-to="washing">Mark Washing</button><button class="btn small primary" data-act="laundry-next" data-id="'+l.id+'" data-to="ready">Mark Ready</button>';
+      if(l.status==='washing')a='<button class="btn small primary" data-act="laundry-next" data-id="'+l.id+'" data-to="ready">Mark Ready</button>';
+      if(l.status==='ready')a='<button class="btn small" data-act="laundry-next" data-id="'+l.id+'" data-to="collected">Mark Delivered</button>';
+    } else if(l.status==='ready'){
+      a='<button class="btn small primary" data-act="laundry-next" data-id="'+l.id+'" data-to="collected">I Collected It</button>';
+    }
+    return '<div><div class="item"><div class="main">'+(w?'<b>'+esc(s.name)+'</b> <span class="sub">Room '+esc(s.room)+' &bull; '+l.items+' items</span>':'<b>'+l.items+' items</b>')+'<div class="line">'+(l.note?'Tag: <b>'+esc(l.note)+'</b> &bull; ':'')+'Given '+fDT(l.at)+'</div></div><div class="acts">'+pill(p[0],p[1])+a+'</div></div><details><summary>Tracking History</summary>'+tlist(l.log)+'</details></div>'}).join('')+'</div>':empty('No laundry currently on record.'))+'</div>';
+
+  const day=S.slotDay==='today'?TODAY():ymd(plus(new Date(),1)),nowH=new Date().getHours();
+  const mySlot=!w&&m&&DB.slots.find(x=>x.roll===m.roll&&x.date===day);
+  let rows='';
+  for(let hh=6;hh<=21;hh++){
+    rows+='<tr><th scope="row">'+hr12(hh)+'</th>'+[1,2].map(mc=>{
+      const b=DB.slots.find(x=>x.date===day&&x.hour===hh&&x.machine===mc),past=day===TODAY()&&hh<nowH;
+      if(b){const own=!w&&m&&b.roll===m.roll;return '<td>'+(own||w?'<button class="btn small'+(own?' primary':'')+'" data-act="slot-cancel" data-id="'+b.id+'" data-fk="sl-'+hh+'-'+mc+'">'+esc(own?'Yours, cancel':first(stu(b.roll).name)+', cancel')+'</button>':'<span class="sub">'+esc(first(stu(b.roll).name))+'</span>')+'</td>'}
+      return '<td>'+(past?'<span class="sub">Passed</span>':w?'<span class="sub">Free</span>':'<button class="btn small" data-act="slot-book" data-hour="'+hh+'" data-machine="'+mc+'" data-fk="sl-'+hh+'-'+mc+'">Book</button>')+'</td>'}).join('')+'</tr>';
+  }
+  h+='<div class="panel"><div class="item"><h2>Washing Machine Slots (1 Hour Slots)</h2><div class="seg" role="group" aria-label="Day"><button class="seg-b s-P'+(S.slotDay==='today'?' on':'')+'" data-act="slot-day" data-v="today" aria-pressed="'+(S.slotDay==='today')+'">Today</button><button class="seg-b s-P'+(S.slotDay==='tomorrow'?' on':'')+'" data-act="slot-day" data-v="tomorrow" aria-pressed="'+(S.slotDay==='tomorrow')+'">Tomorrow</button></div></div>'
+   +'<p class="note" style="margin:6px 0 10px">'+fDay(day)+'. One slot per student per day.'+(mySlot?' You booked '+hr12(mySlot.hour)+' on machine '+mySlot.machine+'.':'')+'</p>'
+   +'<div class="scroll"><table class="slots"><thead><tr><th>Time</th><th>Machine 1</th><th>Machine 2</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+  return h;
+}
+
+/* ---------- 9. LOST AND FOUND ---------- */
+function lfV(){
+  const w=isW(),m=me(),f=S.lfFilter;
+  let list=DB.lf.slice().reverse();
+  if(f==='lost'||f==='found')list=list.filter(x=>x.kind===f&&x.status!=='returned');
+  else if(f==='returned')list=list.filter(x=>x.status==='returned');
+  else list=list.filter(x=>x.status!=='returned');
+
+  let h=head('Lost and Found','Post items you lost or found. Everyone is notified. Only the reporting student can close their report.');
+
+  h+='<div class="panel"><h2>Post a Lost or Found Item</h2><form data-form="lf-new"><div class="grid2">'
+   +field('I...','<select name="kind"><option value="lost">Lost an item</option><option value="found">Found an item</option></select>')
+   +field('Item Name','<input name="item" required placeholder="e.g. Black Casio Calculator / Blue Keys">')
+   +'</div>'
+   +field('Identifying Details','<input name="details" placeholder="Distinct markings, scratches, or tags">')
+   +field('Place last seen or found','<input name="place" required placeholder="e.g. Study hall, 2nd floor, Mess wash basin">')
+   +field('Item photo (optional)','<input type="file" name="photo" accept="image/jpeg,image/png,image/webp" data-lf-photo aria-describedby="lf-photo-help">')
+   +'<p class="note" id="lf-photo-help">Choose a JPG, PNG or WebP photo up to 8 MB. Photos are resized and saved in this browser.</p><div data-lf-preview aria-live="polite"></div>'
+   +'<button class="btn primary" style="margin-top:12px">Post & Notify Everyone</button></form></div>';
+
+  h+='<div class="tools">'+field('Filter Items','<select data-set="lfFilter">'+[['all','All open items'],['lost','Lost items'],['found','Found items'],['returned','Resolved / Returned']].map(x=>'<option value="'+x[0]+'"'+(f===x[0]?' selected':'')+'>'+x[1]+'</option>').join('')+'</select>')+'</div>';
+
+  h+='<div class="panel">'+(list.length?'<div class="list">'+list.map(x=>{
+    const o=stu(x.roll),mine=m&&x.roll===m.roll;
+    let a='';
+    if(x.status!=='returned'){
+      if(mine){
+        a+='<button class="btn small primary" data-act="lf-close-student" data-id="'+x.id+'">'+ic('check')+' I Found It (Close Report)</button>';
+      } else if(w){
+        a+='<span class="sub" style="font-size:12px">Waiting for reporting student to close</span>';
+      } else {
+        a+='<button class="btn small primary" data-act="lf-contact-owner" data-id="'+x.id+'">Contact Poster</button>';
+      }
+    }
+    return '<div class="item"><div class="main"><b>'+esc(x.item)+'</b> '+pill(x.kind==='lost'?'Lost':'Found',x.kind==='lost'?'bad':'ok')+(x.status==='returned'?' '+pill('Resolved / Found','info'):'')
+     +(x.details?'<div class="line">'+esc(x.details)+'</div>':'')
+     +(x.photo?'<img class="lf-photo" src="'+esc(x.photo)+'" alt="Photo of '+esc(x.item)+'" loading="lazy">':'')
+     +'<div class="line">Location: '+esc(x.place)+', '+fDate(x.date)+' &bull; Reported by <b>'+esc(o.name)+'</b> (Room '+esc(o.room)+')</div>'
+     +'</div><div class="acts">'+a+'</div></div>';
+  }).join('')+'</div>':empty('No items found.'))+'</div>';
+
+  return h;
+}
+
+/* ---------- 10. DAILY UPDATES FEED ---------- */
+function feedView(){
+  const w=isW(),u=who();
+  let list=DB.feedItems.slice();
+  if(S.feedFilter&&S.feedFilter!=='all'){
+    list=list.filter(f=>f.cat===S.feedFilter);
+  }
+
+  let h=head('Daily Updates Feed','One live feed covering menu updates, new polls, lost and found, holidays, outing decisions, and notices.');
+
+  if(w){
+    h+='<div class="panel"><div class="item"><h2>Post Notice or Announcement</h2><button class="btn small primary" data-act="toggle-ann">'+(S.annOpen?'Close Form':'+ Create Announcement / Notice')+'</button></div>'
+     +(S.annOpen?'<form data-form="feed-ann" style="margin-top:12px">'
+       +'<div class="grid2">'
+       +field('Category','<select name="cat"><option value="announcement">General Announcement</option><option value="holidays">Holiday Notice</option></select>')
+       +field('Title','<input name="title" required placeholder="e.g. Dasara Holidays Outing Guidelines">')
+       +'</div>'
+       +field('Description / Notice Details','<textarea name="desc" required placeholder="Detailed message for all students..."></textarea>')
+       +'<div class="grid2" id="holDateFields">'
+       +field('Holiday Start Date (if holiday)','<input type="date" name="startDate">')
+       +field('Holiday End Date (if holiday)','<input type="date" name="endDate">')
+       +'</div>'
+       +'<button class="btn primary" style="margin-top:8px">Broadcast to Feed</button>'
+       +'</form>':'')
+     +'</div>';
+  }
+
+  const chips=[
+    ['all','All Updates'],['announcement','Announcements'],['menu','Menu Changes'],
+    ['polls','Polls'],['outings','Outings'],['repairs','Repairs'],
+    ['lostfound','Lost & Found'],['holidays','Holidays']
+  ];
+  h+='<div class="chips">'+chips.map(c=>'<button type="button" class="chip'+(S.feedFilter===c[0]?' active':'')+'" data-act="feed-chip" data-cat="'+c[0]+'">'+c[1]+'</button>').join('')+'</div>';
+
+  h+='<div class="panel"><div class="item"><h2>Hostel Activity Stream</h2><button class="btn small" data-act="feed-read-all">Mark all as read</button></div>';
+
+  if(!list.length){
+    h+=empty('No updates in this category.');
+  } else {
+    const groups={};
+    list.forEach(item=>{
+      const d=item.date||TODAY();
+      groups[d]=groups[d]||[];
+      groups[d].push(item);
+    });
+
+    h+='<div class="feed">';
+    Object.keys(groups).sort().reverse().forEach(dateKey=>{
+      const isToday=dateKey===TODAY();
+      const isYest=dateKey===ymd(plus(new Date(),-1));
+      const dateLabel=isToday?'Today, '+fDate(dateKey):isYest?'Yesterday, '+fDate(dateKey):fDay(dateKey);
+      h+='<div class="feed-day">'+dateLabel+'</div>';
+      groups[dateKey].forEach(item=>{
+        const unread=!item.readBy||!item.readBy.includes(u);
+        h+='<button data-act="feed-click" data-id="'+item.id+'" class="'+(unread?'unread':'')+'">'
+          +'<div style="display:flex;justify-content:space-between;align-items:center">'
+          +'<b>'+esc(item.title)+'</b>'
+          +'<span class="pill p-pri" style="font-size:11px">'+esc(item.cat)+'</span>'
+          +'</div>'
+          +'<div class="line">'+esc(item.desc)+'</div>'
+          +'<div class="sub" style="margin-top:4px">'+fTime(item.at)+'</div>'
+          +'</button>';
+      });
+    });
+    h+='</div>';
+  }
+
+  h+='</div>';
+  return h;
+}
+
+/* ---------- 11. DRAWN SIGNATURE PAD & RULES ---------- */
+function sigAndRulesView(){
+  const w=isW(),ed=w&&S.infoEdit,hol=DB.holidays.slice().sort((a,b)=>a.date.localeCompare(b.date));
+  let h=head('Drawn Signature Pad & Hostel Rules','Canvas signature pad for warden to draw and save official signature for outpasses, timings, contacts.');
+
+  h+='<div class="panel"><h2>Warden Digital Signature (Drawn Canvas Pad)</h2>'
+   +'<p class="sub" style="margin-bottom:12px">Draw your signature below using mouse or finger. Clicking &ldquo;Save Signature&rdquo; permanently stamps it on all approved outpasses.</p>'
+   +'<div class="cols">'
+   +'<div>'
+   +'<canvas id="sigpad" width="300" height="120"></canvas>'
+   +'<div class="btnrow"><button type="button" class="btn small" data-act="sig-clear">Clear Pad</button><button type="button" class="btn small primary" data-act="sig-save">Save Signature</button></div>'
+   +'</div>'
+   +'<div>'
+   +'<span class="sub">Currently Stored Signature:</span>'
+   +'<div style="padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--surf);margin-top:6px">'
+   +(DB.wardenSig?'<img src="'+DB.wardenSig+'" style="max-height:60px;display:block" alt="Saved Signature">':'<p class="note">No signature drawn yet.</p>')
+   +'</div>'
+   +'</div>'
+   +'</div>'
+   +'</div>';
+
+  const crow=(label,name,phone,k)=>ed?'<div class="grid2" style="align-items:end">'+field(label,'<input name="n-'+k+'" value="'+esc(name)+'">')+field('Phone','<input name="p-'+k+'" value="'+esc(phone)+'">')+'</div>':'<div class="item"><div class="main"><b>'+esc(label)+'</b><div class="line">'+esc(name)+'</div></div><div class="acts">'+tel(phone)+'</div></div>';
+  h+='<div class="panel"><div class="item"><h2>Hostel Directory</h2>'+(w&&!ed?'<button class="btn small" data-act="info-edit">Edit contacts</button>':'')+'</div>'
+   +(ed?'<form data-form="contacts-save" style="margin-top:8px">':'')
+   +'<div class="list">'+DB.contacts.map(c=>crow(c.label,c.name,c.phone,c.id)).join('')+'</div>'
+   +'<h3 style="margin:16px 0 8px">Maintenance Staff</h3><div class="list">'+DB.staff.map(s=>crow(s.role,s.name,s.phone,s.id)).join('')+'</div>'
+   +(ed?'<div class="btnrow" style="margin-top:12px"><button class="btn primary">Save contacts</button><button type="button" class="btn" data-act="info-cancel">Cancel</button></div></form>':'')+'</div>';
+
+  h+='<div class="cols"><div class="panel"><h2>Hostel Timings</h2>'+(w?'<form data-form="rules"><div class="grid2">'+field('Curfew (Entry closes)','<input type="time" name="curfew" value="'+DB.rules.curfew+'" required>')+field('Roll Call at','<input type="time" name="rollcall" value="'+DB.rules.rollcall+'" required>')+'</div><button class="btn primary" style="margin-top:8px">Save Timings</button></form>'
+     :'<p>Hostel entry closes at <b>'+DB.rules.curfew+'</b>. Night roll call is at <b>'+DB.rules.rollcall+'</b>.</p>')+'</div>'
+   +'<div class="panel"><h2>Holidays & Vacations</h2>'+(hol.length?'<div class="list">'+hol.map(x=>'<div class="item"><div class="main"><b>'+esc(x.name)+'</b><div class="line">'+fDate(x.date)+(x.endDate?' to '+fDate(x.endDate):'')+' &bull; '+(x.note||'Holiday notice')+'</div></div>'+(w?'<div class="acts"><button class="btn small danger" data-act="hol-del" data-id="'+x.id+'">Remove</button></div>':'')+'</div>').join('')+'</div>':empty('No holidays listed.'))
+   +(w?'<form data-form="hol-add" style="margin-top:12px"><div class="grid2">'+field('Start Date','<input type="date" name="date" required>')+field('End Date','<input type="date" name="endDate">')+'</div>'+field('Holiday Name','<input name="name" required placeholder="e.g. Dasara Vacation">')+field('Notice details','<input name="note" placeholder="Outing permissions apply">')+'<button class="btn primary" style="margin-top:8px">Add Holiday</button></form>':'')+'</div></div>';
+
+  if(w)h+='<div class="panel"><h2>Reset Demo Data</h2><p class="sub" style="margin-bottom:10px">Replaces storage with fresh students, attendance, polls, and requests.</p><button class="btn'+(S.confirmReset?' danger':'')+'" data-act="reset">'+(S.confirmReset?'Confirm Erase & Reset':'Reset Demo Data')+'</button></div>';
+
+  return h;
+}
+
+/* ---------- 12. MEDICAL SOS ---------- */
+function medV(){
+  const w=isW(),m=me();
+  const docs=DB.contacts.filter(c=>c.id==='c4'||c.id==='c5'||c.id==='c6');
+  let h=head('Medical Support & SOS Alerts','Emergency medical alerts and quick tap-to-call directory.');
+  const act=DB.emergencies.filter(e=>e.status!=='resolved'&&(w||e.roll===m.roll));
+  act.forEach(e=>{const s=stu(e.roll);
+    h+='<div class="alert"><div class="item"><div class="main"><h2>'+(w?esc(s.name)+', room '+esc(s.room):'Your alert is active')+'</h2><div class="line" style="color:var(--ink)">'+esc(e.symptom)+(e.note?': '+esc(e.note):'')+'</div><div class="line" style="color:var(--ink)">Sent '+fTime(e.at)+'. '+(e.status==='responding'?'The warden is responding.':'Waiting for the warden to respond.')+(w?' Phone '+tel(e.phone):'')+'</div></div><div class="acts">'
+     +(w?(e.status==='new'?'<button class="btn danger" data-act="em-respond" data-id="'+e.id+'">I am responding</button>':'')+'<button class="btn" data-act="em-resolve" data-id="'+e.id+'">Mark resolved</button>':'')+'</div></div><details><summary>Timeline</summary>'+tlist(e.log)+'</details></div>'});
+  if(!w){
+    h+='<div class="panel"><h2>Medical emergency</h2>'
+     +(S.sosOpen?'<form data-form="sos"><p class="note" style="margin:0 0 12px">Sending as <b>'+esc(m.name)+'</b>, room '+esc(m.room)+', phone '+esc(m.phone)+'.</p>'
+       +field('What is happening','<select name="symptom">'+opts(['Fever or illness','Injury','Breathing trouble','Chest pain','Fainting','Other'])+'</select>')
+       +field('Anything the warden should know','<textarea name="note"></textarea>')
+       +'<div class="btnrow"><button class="btn danger">Notify warden now</button><button type="button" class="btn" data-act="sos-close">Cancel</button></div></form>'
+       :'<button class="btn danger sos" data-act="sos-open">Medical emergency: notify the warden</button>')
+     +'<p class="note">This alerts the warden inside this app. In life-threatening emergencies, call campus clinic directly below.</p></div>';
+  }
+  h+='<div class="panel"><h2>Emergency Call Directory</h2><div class="list">'+docs.map(c=>'<div class="item"><div class="main"><b>'+esc(c.label)+'</b><div class="line">'+esc(c.name)+'</div></div><div class="acts"><a class="btn small" href="tel:'+esc(c.phone.replace(/\s/g,''))+'">'+ic('call')+' '+esc(c.phone)+'</a></div></div>').join('')+'</div></div>';
+  return h;
+}
+
+/* ---------- PDF & CSV EXPORTERS ---------- */
+function printWindow(title,htmlContent,landscape=false){
+  const w=window.open('','_blank');
+  if(!w){toast('Popup blocked. Please allow popups to download PDF.');return}
+  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title>'
+   +'<style>'
+   +'@page{size:'+(landscape?'landscape':'portrait')+';margin:12mm}'
+   +'body{font-family:"Public Sans",system-ui,sans-serif;color:#14202F;margin:0;padding:12px;background:#fff}'
+   +'h1{font-size:18px;margin:0 0 4px;color:#0B2F6B}p{margin:0 0 12px;font-size:12px;color:#5A6878}'
+   +'table{width:100%;border-collapse:collapse;font-size:11px}'
+   +'th,td{border:1px solid #D5DCE6;padding:4px 6px;text-align:center}'
+   +'th{background:#E6ECF6;color:#0B2F6B;font-weight:700}'
+   +'th.left,td.left{text-align:left}'
+   +'.c-P{background:#DCEFE3;color:#1B6E3E;font-weight:700}'
+   +'.c-A{background:#F8DFDC;color:#A8231B;font-weight:700}'
+   +'.c-O{background:#FAEBC9;color:#8A5200;font-weight:700}'
+   +'.c-L{background:#E3E8EE;color:#44546A;font-weight:700}'
+   +'@media print{button{display:none}}'
+   +'</style></head><body>'
+   +htmlContent
+   +'<script>window.onload=()=>{setTimeout(()=>{window.print();},400);};<\/script>'
+   +'</body></html>');
+  w.document.close();
+}
+
+function exportStudentPDF(roll,monthYm){
+  const s=stu(roll);
+  const a=monthYm.split('-').map(Number);
+  const n=new Date(a[0],a[1],0).getDate();
+  const lab=new Date(a[0],a[1]-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+  const ms=stats(roll,monthYm);
+
+  let rows='';
+  for(let i=1;i<=n;i++){
+    const k=monthYm+'-'+pad(i);
+    const dayName=pd(k).toLocaleDateString('en-IN',{weekday:'short'});
+    const v=sOf(roll,k)||'-';
+    rows+='<tr><td>'+i+'</td><td>'+dayName+'</td><td class="'+(v!=='-'?'c-'+v:'')+'">'+(ATT[v]?ATT[v][0]:v)+'</td></tr>';
+  }
+
+  const html='<div style="border-bottom:2px solid #0B2F6B;padding-bottom:8px;margin-bottom:14px">'
+   +'<h1>CVR COLLEGE OF ENGINEERING - HOSTEL ATTENDANCE REPORT</h1>'
+   +'<p>Student: <b>'+esc(s.name)+'</b> | Roll: <b>'+esc(s.roll)+'</b> | Room: <b>'+esc(s.room)+'</b> | Month: <b>'+lab+'</b></p>'
+   +'<p>Summary: Present: <b>'+ms.P+'</b> | Absent: <b>'+ms.A+'</b> | Outing: <b>'+ms.O+'</b> | Leave: <b>'+ms.L+'</b> | Percentage: <b>'+(ms.pct==null?'-':ms.pct+'%')+'</b></p>'
+   +'</div>'
+   +'<table><thead><tr><th>Date</th><th>Day</th><th>Attendance Status</th></tr></thead><tbody>'+rows+'</tbody></table>'
+   +'<p style="margin-top:14px;font-size:10px;text-align:right">Generated via HostelPulse Portal on '+fDT(NOW())+'</p>';
+
+  printWindow('Attendance_'+s.roll+'_'+monthYm,html,false);
+}
+
+function exportHostelPDF(monthYm){
+  const a=monthYm.split('-').map(Number);
+  const n=new Date(a[0],a[1],0).getDate();
+  const lab=new Date(a[0],a[1]-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+  const list=DB.students.slice().sort((x,y)=>x.room.localeCompare(y.room,'en',{numeric:true})||x.name.localeCompare(y.name));
+
+  let th='<tr><th class="left">Roll No</th><th class="left">Student Name</th><th>Room</th>';
+  for(let i=1;i<=n;i++)th+='<th>'+i+'</th>';
+  th+='<th>P</th><th>A</th><th>O</th><th>L</th><th>%</th></tr>';
+
+  let trs='';
+  list.forEach(s=>{
+    let line='<tr><td class="left">'+esc(s.roll)+'</td><td class="left">'+esc(s.name)+'</td><td>'+esc(s.room)+'</td>';
+    for(let i=1;i<=n;i++){
+      const k=monthYm+'-'+pad(i);
+      const v=k>TODAY()?'':(sOf(s.roll,k)||'');
+      line+='<td class="'+(v?'c-'+v:'')+'">'+v+'</td>';
+    }
+    const ms=stats(s.roll,monthYm);
+    trs+=line+'<td>'+ms.P+'</td><td>'+ms.A+'</td><td>'+ms.O+'</td><td>'+ms.L+'</td><td><b>'+(ms.pct==null?'-':ms.pct+'%')+'</b></td></tr>';
+  });
+
+  const html='<h1>CVR COLLEGE OF ENGINEERING - HOSTEL MONTHLY ATTENDANCE REGISTER</h1>'
+   +'<p>Month: <b>'+lab+'</b> | Total Students: <b>'+list.length+'</b> | P=Present, A=Absent, O=Outing, L=Leave</p>'
+   +'<table><thead>'+th+'</thead><tbody>'+trs+'</tbody></table>'
+   +'<p style="margin-top:10px;font-size:10px">Confidential Hostel Record &bull; Generated on '+fDT(NOW())+'</p>';
+
+  printWindow('Hostel_Attendance_'+monthYm,html,true);
+}
+
+function exportHostelCSV(monthYm){
+  const a=monthYm.split('-').map(Number);
+  const n=new Date(a[0],a[1],0).getDate();
+  const list=DB.students.slice().sort((x,y)=>x.room.localeCompare(y.room,'en',{numeric:true})||x.name.localeCompare(y.name));
+
+  let csv='Roll,Name,Hostel,Room,';
+  for(let i=1;i<=n;i++)csv+=i+',';
+  csv+='Present,Absent,Outing,Leave,Percentage\n';
+
+  list.forEach(s=>{
+    let row='"'+s.roll+'","'+s.name.replace(/"/g,'""')+'","'+s.hostel+'","'+s.room+'",';
+    for(let i=1;i<=n;i++){
+      const k=monthYm+'-'+pad(i);
+      row+=(k>TODAY()?'':(sOf(s.roll,k)||''))+',';
+    }
+    const ms=stats(s.roll,monthYm);
+    row+=ms.P+','+ms.A+','+ms.O+','+ms.L+','+(ms.pct==null?'-':ms.pct+'%')+'\n';
+  });
+
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(blob);
+  link.download='Hostel_Attendance_'+monthYm+'.csv';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  toast('Hostel attendance CSV downloaded.');
+}
+
+/* ---------- SIGNATURE PAD CANVAS ---------- */
+function initSigPad(){
+  const canvas=$('#sigpad');
+  if(!canvas||!canvas.getContext)return;
+  const ctx=canvas.getContext('2d');
+  ctx.strokeStyle='#0B2F6B';
+  ctx.lineWidth=2.5;
+  ctx.lineCap='round';
+  let drawing=false,prevX=0,prevY=0;
+
+  const getPos=e=>{
+    const rect=canvas.getBoundingClientRect();
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    return [cx-rect.left,cy-rect.top];
+  };
+
+  canvas.onmousedown=e=>{drawing=true;const[x,y]=getPos(e);prevX=x;prevY=y;e.preventDefault()};
+  canvas.onmousemove=e=>{if(!drawing)return;const[x,y]=getPos(e);ctx.beginPath();ctx.moveTo(prevX,prevY);ctx.lineTo(x,y);ctx.stroke();prevX=x;prevY=y;e.preventDefault()};
+  window.onmouseup=()=>{drawing=false};
+  canvas.ontouchstart=e=>{drawing=true;const[x,y]=getPos(e);prevX=x;prevY=y;e.preventDefault()};
+  canvas.ontouchmove=e=>{if(!drawing)return;const[x,y]=getPos(e);ctx.beginPath();ctx.moveTo(prevX,prevY);ctx.lineTo(x,y);ctx.stroke();prevX=x;prevY=y;e.preventDefault()};
+  canvas.ontouchend=()=>{drawing=false};
+}
+
+/* ---------- ACTIONS ---------- */
+const byId=(arr,id)=>arr.find(x=>x.id===id);
+const ACTS={
+  'go':d=>{S.more=false;S.view=d.v;S.confirmReset=false;S.sosOpen=false;S.menuEdit=false;S.infoEdit=false;render();scrollTo(0,0)},
+  'more':()=>{S.more=!S.more;render()},'more-close':()=>{S.more=false;render()},
+  'logout':()=>{SESSION=null;Object.assign(S,INITIAL_STATE);render();scrollTo(0,0)},
+  'lookup':d=>{S.lookRoll=d.roll;S.lookQ=d.roll;S.lookMonth=TODAY().slice(0,7);S.view='student';S.more=false;render();scrollTo(0,0)},
+  'look-month':d=>{const a=S.lookMonth.split('-').map(Number),x=new Date(a[0],a[1]-1+Number(d.d),1),k=x.getFullYear()+'-'+pad(x.getMonth()+1);if(k<=TODAY().slice(0,7)){S.lookMonth=k;render()}},
+
+  /* Attendance */
+  'att-tab':d=>{S.attTab=d.v;render()},
+  'mark':d=>{const a=DB.att[d.date]=DB.att[d.date]||{};if(a[d.roll]===d.st)delete a[d.roll];else a[d.roll]=d.st;commit()},
+  'mark-all-present':d=>{const a=DB.att[d.date]=DB.att[d.date]||{};let n=0;DB.students.forEach(s=>{if(!sOf(s.roll,d.date)){a[s.roll]='P';n++}});toast(n?n+' students marked present.':'Everyone already marked.');commit()},
+  'mark-approved-out':d=>{
+    const a=DB.att[d.date]=DB.att[d.date]||{};
+    let n=0;
+    DB.outings.forEach(o=>{
+      if((o.status==='approved'||o.status==='out'||o.status==='returned')&&o.expectedOut.slice(0,10)===d.date){
+        if(a[o.roll]!=='O'){a[o.roll]='O';n++}
+      }
+    });
+    toast(n?n+' students on approved outings marked Out.':'No unrecorded approved outings for today.');
+    commit();
+  },
+  'finish':d=>{
+    const a=DB.att[d.date]=DB.att[d.date]||{};
+    DB.students.forEach(s=>{const v=sOf(s.roll,d.date);if(v&&!a[s.roll])a[s.roll]=v});
+    const rc=DB.rollcall[d.date]=DB.rollcall[d.date]||{notified:[]};rc.at=NOW();rc.notified=rc.notified||[];
+    let n=0;
+    DB.students.forEach(s=>{if(a[s.roll]==='A'&&!rc.notified.includes(s.roll)){rc.notified.push(s.roll);pushFeed('attendance','Marked absent for roll call on '+fDate(d.date),'Recorded absent. Please verify with warden.');n++}});
+    toast('Roll call saved.');commit();
+  },
+  'copy-abs':async d=>{const l=DB.students.filter(s=>sOf(s.roll,d.date)==='A').map(s=>s.name+', room '+s.room+', '+s.roll);const t='Absent on '+fDate(d.date)+':\n'+l.join('\n');
+    try{await navigator.clipboard.writeText(t);toast('Absentee list copied.')}catch(e){toast('Absent: '+l.map(x=>x.split(',')[0]).join(', '))}},
+  'cycle':d=>{const order=[undefined,'P','A','O','L'],a=DB.att[d.date]=DB.att[d.date]||{},cur=a[d.roll];const nx=order[(order.indexOf(cur)+1)%order.length];if(nx)a[d.roll]=nx;else delete a[d.roll];commit()},
+  'month':d=>{const a=S.attMonth.split('-').map(Number),x=new Date(a[0],a[1]-1+Number(d.d),1),k=x.getFullYear()+'-'+pad(x.getMonth()+1);if(k<=TODAY().slice(0,7)){S.attMonth=k;S.selDay=null;render()}},
+  'day':d=>{S.selDay=d.date;S.fk=null;render()},
+  'query-day':d=>{const m=me();pushFeed('attendance','Attendance check request from '+m.name,'Student in room '+m.room+' asked to verify attendance on '+fDate(d.date));toast('Request sent to warden.');commit()},
+
+  /* Exports */
+  'download-student-att-pdf':d=>{exportStudentPDF(d.roll,d.month)},
+  'export-hostel-pdf':d=>{exportHostelPDF(d.month)},
+  'export-hostel-csv':d=>{exportHostelCSV(d.month)},
+
+  /* Outings & Verification */
+  'open-verify':d=>{S.verifyOuting=byId(DB.outings,d.id);render()},
+  'close-verify':()=>{S.verifyOuting=null;render()},
+  'open-reject':d=>{
+    const reason=prompt('Enter the required rejection reason that the student will see:');
+    if(!reason||!reason.trim()){toast('Rejection reason is required.');return}
+    const o=byId(DB.outings,d.id);
+    o.status='rejected';o.rejectReason=reason.trim();o.decidedAt=NOW();
+    pushFeed('outings','Outing rejected for '+stu(o.roll).name,'Reason: '+o.rejectReason);
+    S.verifyOuting=null;toast('Outing rejected.');commit();
+  },
+  'view-outpass':d=>{S.activeOutpass=byId(DB.outings,d.id);render()},
+  'close-outpass':()=>{S.activeOutpass=null;render()},
+  'print-outpass':d=>{
+    const o=byId(DB.outings,d.id);
+    const card=$('#outpass-printable');
+    if(!card)return;
+    printWindow('Outpass_'+o.outpassNum,card.outerHTML,false);
+  },
+  'gate-out':d=>{const o=byId(DB.outings,d.id);o.status='out';o.outAt=NOW();pushFeed('outings','Recorded departure: '+stu(o.roll).name,'Left gate at '+fTime(o.outAt)+', due back by '+fTime(o.expectedIn));toast('Gate departure marked.');commit()},
+  'gate-in':d=>{
+    const o=byId(DB.outings,d.id);o.status='returned';o.inAt=NOW();
+    const t=TODAY(),a=DB.att[t]=DB.att[t]||{};if(!a[o.roll]||a[o.roll]==='O')a[o.roll]='O';
+    pushFeed('outings','Recorded return: '+stu(o.roll).name,'Returned to hostel at '+fTime(o.inAt)+(isLate(o)?' (Late)':''));
+    toast('Gate return recorded.');commit();
+  },
+  'out-cancel':d=>{const o=byId(DB.outings,d.id);o.status='cancelled';toast('Outing cancelled.');commit()},
+
+  /* Polls */
+  'menu-edit':()=>{S.menuEdit=true;render()},'menu-cancel':()=>{S.menuEdit=false;render()},
+  'open-create-poll':()=>{S.createPollOpen=true;render()},'close-create-poll':()=>{S.createPollOpen=false;render()},
+  'open-meal-poll':d=>{S.pollModalMeal={day:d.day,meal:d.meal,dish:d.dish};render()},
+  'close-meal-poll':()=>{S.pollModalMeal=null;render()},
+  'view-poll':d=>{S.view='mess';toast('Showing poll.');render()},
+  'poll-toggle-status':d=>{const p=byId(DB.polls,d.id);p.status=d.to;toast('Poll is now '+d.to+'.');commit()},
+  'poll-delete':d=>{DB.polls=DB.polls.filter(p=>p.id!==d.id);toast('Poll deleted.');commit()},
+  'poll-vote':d=>{
+    const p=byId(DB.polls,d.id),m=me();
+    p.votes=p.votes||{};
+    const prev=p.votes[m.roll]?p.votes[m.roll].comment:'';
+    p.votes[m.roll]={opt:Number(d.opt),comment:prev};
+    toast('Vote recorded: '+p.options[Number(d.opt)]);commit();
+  },
+
+  /* Feed */
+  'feed-chip':d=>{S.feedFilter=d.cat;render()},
+  'feed-read-all':()=>{
+    const u=who();
+    DB.feedItems.forEach(f=>{f.readBy=f.readBy||[];if(!f.readBy.includes(u))f.readBy.push(u)});
+    toast('All updates marked as read.');commit();
+  },
+  'feed-click':d=>{
+    const item=byId(DB.feedItems,d.id),u=who();
+    if(item){
+      item.readBy=item.readBy||[];
+      if(!item.readBy.includes(u))item.readBy.push(u);
+      save();
+      if(item.cat==='menu'||item.cat==='polls')S.view='mess';
+      else if(item.cat==='outings')S.view='outings';
+      else if(item.cat==='repairs')S.view='issues';
+      else if(item.cat==='lostfound')S.view='lostfound';
+      render();
+    }
+  },
+  'toggle-ann':()=>{S.annOpen=!S.annOpen;render()},
+
+  /* Lost and Found */
+  'lf-close-student':d=>{
+    const x=byId(DB.lf,d.id),m=me();
+    x.status='returned';
+    pushFeed('lostfound','Lost & found resolved: '+x.item,m.name+' confirmed this item is recovered and closed the report.');
+    toast('Report marked resolved & closed.');commit();
+  },
+  'lf-contact-owner':d=>{
+    const x=byId(DB.lf,d.id),s=stu(x.roll);
+    alert('Contact '+s.name+' (Room '+s.room+'):\nPhone: '+s.phone);
+  },
+
+  /* Repairs */
+  'repair-status':d=>{
+    const i=byId(DB.issues,d.id);
+    i.status=d.st;
+    const label=d.st==='assigned'?'In Progress':d.st==='fixed'?'Fixed':'Reported';
+    i.log.push({at:NOW(),text:'Status updated to '+label+' by warden'});
+    pushFeed('repairs','Repair '+label+': '+i.cat+' at '+i.where,'Warden updated status to '+label+'.');
+    toast('Repair marked as '+label+'.');
+    commit();
+  },
+  'toggle-warden-issue':()=>{S.wardenIssueOpen=!S.wardenIssueOpen;render()},
+  'toggle-warden-laundry':()=>{S.wardenLauOpen=!S.wardenLauOpen;render()},
+  'iss-confirm':d=>{const i=byId(DB.issues,d.id);i.status='closed';i.log.push({at:NOW(),text:'Student confirmed fixed. Closed.'});pushFeed('repairs','Repair fixed & closed: '+i.cat+' at '+i.where,'Student confirmed the repair is resolved.');toast('Repair closed.');commit()},
+  'iss-reopen':d=>{const i=byId(DB.issues,d.id);i.status='reported';i.log.push({at:NOW(),text:'Student reported not fixed yet. Reopened.'});pushFeed('repairs','Repair reopened by student: '+i.cat+' at '+i.where,'Student indicates the repair is not yet resolved.');toast('Repair reopened.');commit()},
+
+  /* Laundry & Slots */
+  'laundry-next':d=>{const l=byId(DB.laundry,d.id);l.status=d.to;l.log.push({at:NOW(),text:LS[d.to][0]});if(isW())pushFeed('laundry','Laundry status updated for '+stu(l.roll).name,LS[d.to][0]);commit()},
+  'slot-day':d=>{S.slotDay=d.v;render()},
+  'slot-book':d=>{const m=me(),day=S.slotDay==='today'?TODAY():ymd(plus(new Date(),1));
+    const roll=m?m.roll:(SESSION&&SESSION.roll?SESSION.roll:DB.students[0].roll);
+    if(DB.slots.find(x=>x.roll===roll&&x.date===day))return toast('You already have a slot on this day.');
+    if(DB.slots.find(x=>x.date===day&&x.hour===Number(d.hour)&&x.machine===Number(d.machine)))return toast('That slot was just booked.');
+    DB.slots.push({id:uid(),date:day,hour:Number(d.hour),machine:Number(d.machine),roll});toast('Booked machine '+d.machine+' at '+hr12(Number(d.hour)));commit()},
+  'slot-cancel':d=>{DB.slots=DB.slots.filter(x=>x.id!==d.id);toast('Booking cancelled.');commit()},
+
+  /* Medical SOS */
+  'sos-open':()=>{S.sosOpen=true;render()},
+  'sos-close':()=>{S.sosOpen=false;render()},
+  'em-respond':d=>{const e=byId(DB.emergencies,d.id);e.status='responding';e.log.push({at:NOW(),text:'Warden responding'});toast('Marked responding.');commit()},
+  'em-resolve':d=>{const e=byId(DB.emergencies,d.id);e.status='resolved';e.log.push({at:NOW(),text:'Marked resolved'});toast('Medical alert resolved.');commit()},
+
+  /* Settings, Contacts, Signature */
+  'sig-clear':()=>{const c=$('#sigpad');if(c){const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height)}},
+  'sig-save':()=>{
+    const c=$('#sigpad');
+    if(!c)return;
+    DB.wardenSig=c.toDataURL('image/png');
+    toast('Warden digital signature saved.');commit();
+  },
+  'info-edit':()=>{S.infoEdit=true;render()},'info-cancel':()=>{S.infoEdit=false;render()},
+  'hol-del':d=>{DB.holidays=DB.holidays.filter(x=>x.id!==d.id);commit()},
+  'reset':()=>{if(!S.confirmReset){S.confirmReset=true;return render()}S.confirmReset=false;DB=seed();toast('Demo data reset.');commit()}
+};
+
+document.addEventListener('click',e=>{
+  const roleButton=e.target.closest('[data-login-role]');
+  if(roleButton){loginRole=roleButton.dataset.loginRole;render();return;}
+  if(!SESSION)return;
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  S.fk=b.dataset.fk||null;
+  const f=ACTS[b.dataset.act];if(f)f(b.dataset,b);
+});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.matches('[data-lf-photo]')){
+    const preview=t.form.querySelector('[data-lf-preview]'),file=t.files[0];
+    preview.replaceChildren();
+    const problem=lfPhotoError(file);
+    if(problem){t.value='';preview.textContent=problem;return;}
+    if(!file)return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      if(t.files[0]!==file)return;
+      const img=document.createElement('img');img.className='lf-photo';img.alt='Selected item photo preview';img.src=reader.result;
+      const remove=document.createElement('button');remove.type='button';remove.className='btn small';remove.textContent='Remove photo';
+      remove.onclick=()=>{t.value='';preview.replaceChildren();};
+      preview.replaceChildren(img,remove);
+    };
+    reader.onerror=()=>{if(t.files[0]===file){t.value='';preview.textContent='Could not read this photo. Please choose another.';}};
+    reader.readAsDataURL(file);return;
+  }
+  if(t.dataset&&t.dataset.set){
+    let v=t.value;if(t.dataset.set==='attDate'&&(!v||v>TODAY()))v=TODAY();
+    S[t.dataset.set]=v;render();
+  }
+  if(t.id==='outTypeSelect'){
+    const wrap=$('#holNoticeWrap');
+    if(wrap)wrap.style.display=t.value==='holiday'?'block':'none';
+  }
+  if(t.id==='chkMentor'||t.id==='chkParent'){
+    const m=$('#chkMentor'),p=$('#chkParent'),btn=$('#btnApproveOuting');
+    if(btn)btn.disabled=!(m&&m.checked&&p&&p.checked);
+  }
+});
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset&&t.dataset.live==='attQ'){
+    S.attQ=t.value;const l=$('#rolllist');if(l)l.innerHTML=rollRows();
+  }
+});
+
+/* ---------- FORMS ---------- */
+const FORMS={
+  'out-new':f=>{
+    const g=n=>f.elements[n]?f.elements[n].value:'',m=me();
+    const type=g('type')||'sunday';
+    const outTime=g('out'),backTime=g('back');
+    if(new Date(backTime)<=new Date(outTime))return toast('Return time must be after leaving time.');
+
+    if(type==='sunday'){
+      const outDay=pd(outTime.slice(0,10)).getDay();
+      if(outDay!==0)return toast('Sunday outings can only be requested for Sundays.');
+      const curMonth=outTime.slice(0,7);
+      const used=sundayQuotaUsed(m.roll,curMonth);
+      if(used>=3)return toast('Sunday outing quota full for '+curMonth+' (3 of 3 used).');
+    }
+
+    const o={
+      id:uid(),roll:m.roll,type,purpose:type==='holiday'?'Holiday Outing':type==='sunday'?'Sunday Outing':'General Outing',
+      place:g('place').trim(),reason:g('reason').trim(),phone:g('phone').trim(),
+      expectedOut:outTime,expectedIn:backTime,status:'pending',
+      createdAt:NOW(),mentorSpoke:false,parentSpoke:false,
+      holidayId:g('holidayId')||null
+    };
+    DB.outings.push(o);
+    pushFeed('outings','New outing request from '+m.name+' ('+type.toUpperCase()+')','Destination: '+o.place+'. Awaiting mentor and parent verification.');
+    toast('Outing request submitted to warden.');commit();
+  },
+  'verify-save':(f,e)=>{
+    const id=f.dataset.id,o=byId(DB.outings,id);
+    const act=e.submitter?e.submitter.value:'save';
+    const mentorSpoke=f.elements.mentorSpoke.checked;
+    const parentSpoke=f.elements.parentSpoke.checked;
+    const mentorNote=f.elements.mentorNote.value.trim();
+    const parentNote=f.elements.parentNote.value.trim();
+
+    o.mentorSpoke=mentorSpoke;o.parentSpoke=parentSpoke;
+    o.mentorNote=mentorNote;o.parentNote=parentNote;
+
+    if(act==='approve'){
+      if(!mentorSpoke||!parentSpoke)return toast('Both mentor and parent must be verified before approval.');
+      o.status='approved';
+      o.decidedAt=NOW();
+      o.outpassNum='CVR-OP-'+pad(Math.floor(Math.random()*89999+10000));
+      pushFeed('outings','Outpass Issued for '+stu(o.roll).name,'Outpass #'+o.outpassNum+' generated for '+o.place+'. Leave '+fDT(o.expectedOut));
+      toast('Approved! Outpass #'+o.outpassNum+' issued.');
+      S.verifyOuting=null;
+      S.activeOutpass=o;
+    } else {
+      o.status='verifying';
+      pushFeed('outings','Warden is verifying outing for '+stu(o.roll).name,'Verification in progress (mentor/parent checks).');
+      toast('Verification progress saved.');
+      S.verifyOuting=null;
+    }
+    commit();
+  },
+  'gate-walkin':f=>{
+    const r=f.elements.roll.value,s=stu(r);
+    if(isOut(r))return toast(s.name+' is already marked outside.');
+    const o={
+      id:uid(),roll:r,type:'general',purpose:'Gate entry by warden',
+      place:f.elements.place.value.trim(),reason:f.elements.reason.value.trim(),
+      phone:s.phone,expectedOut:NOW(),expectedIn:f.elements.back.value,
+      status:'out',outAt:NOW(),decidedAt:NOW(),mentorSpoke:true,parentSpoke:true,
+      outpassNum:'CVR-OP-'+pad(Math.floor(Math.random()*89999+10000))
+    };
+    DB.outings.push(o);
+    pushFeed('outings','Manual gate departure recorded: '+s.name,'Destination: '+o.place);
+    toast(s.name+' recorded as out at gate.');commit();
+  },
+  'menu-save':f=>{
+    DAYS.forEach(d=>MEALS.forEach(x=>{
+      const oldVal=DB.menu[d][x[0]];
+      const newVal=f.elements[d+'-'+x[0]].value.trim();
+      if(newVal!==oldVal){
+        DB.menu[d][x[0]]=newVal;
+        pushFeed('menu','Menu changed for '+d+' '+x[1],'Dish updated to: '+newVal);
+      }
+    }));
+    S.menuEdit=false;toast('Menu updated & students notified.');commit();
+  },
+  'poll-attach-meal':f=>{
+    const day=f.elements.day.value,meal=f.elements.meal.value,dish=f.elements.dish.value;
+    const title=f.elements.title.value.trim();
+    DB.polls.push({
+      id:uid(),day,meal,dish,title,
+      options:['Liked it','It\'s okay','Not good'],status:'open',createdAt:NOW(),votes:{}
+    });
+    pushFeed('polls','New opinion poll: '+title,'Vote for '+day+' '+meal+' in Mess section.');
+    S.pollModalMeal=null;toast('Opinion poll attached to meal.');commit();
+  },
+  'poll-new-custom':f=>{
+    const title=f.elements.title.value.trim();
+    const mealOpt=f.elements.mealOpt.value;
+    let day='',meal='';
+    if(mealOpt){const spl=mealOpt.split('|');day=spl[0];meal=spl[1]}
+    const optsArr=[f.elements.opt1.value,f.elements.opt2.value,f.elements.opt3.value,f.elements.opt4.value,f.elements.opt5.value]
+      .map(s=>s.trim()).filter(Boolean);
+    if(optsArr.length<2)return toast('Provide at least 2 options.');
+    DB.polls.push({id:uid(),day,meal,dish:meal?meal+' custom':'',title,options:optsArr,status:'open',createdAt:NOW(),votes:{}});
+    pushFeed('polls','New poll: '+title,'Tap Mess & Polls to cast your vote.');
+    S.createPollOpen=false;toast('Poll published.');commit();
+  },
+  'poll-comment':f=>{
+    const id=f.dataset.id,p=byId(DB.polls,id),m=me();
+    p.votes=p.votes||{};
+    if(!p.votes[m.roll])return toast('Please select an option before commenting.');
+    p.votes[m.roll].comment=f.elements.comment.value.trim();
+    toast('Comment saved for warden.');commit();
+  },
+  'issue-new':async f=>{
+    const m=me();
+    const roll=m?m.roll:(SESSION&&SESSION.roll?SESSION.roll:DB.students[0].roll);
+    const cat=f.elements.cat.value,pri=f.elements.pri.value,where=f.elements.where.value.trim(),text=f.elements.text.value.trim();
+    let photo='';
+    const file=f.elements.photo&&f.elements.photo.files?f.elements.photo.files[0]:null;
+    if(file){try{photo=await compress(file,900,.62)}catch(e){}}
+    DB.issues.push({id:uid(),roll,cat,pri,where,text,photo,status:'reported',createdAt:NOW(),log:[{at:NOW(),text:'Reported by '+(m?m.name:'Student')}]});
+    pushFeed('repairs','New '+cat+' repair request at '+where,'Reported by '+(m?m.name:'Student')+' ('+pri+' priority).');
+    toast('Repair report submitted.');commit();
+  },
+  'issue-warden-new':f=>{
+    const roll=f.elements.roll.value,s=stu(roll);
+    const cat=f.elements.cat.value,pri=f.elements.pri.value,where=f.elements.where.value.trim(),text=f.elements.text.value.trim();
+    DB.issues.push({id:uid(),roll,cat,pri,where,text,photo:'',status:'reported',createdAt:NOW(),log:[{at:NOW(),text:'Logged by Warden for '+s.name}]});
+    pushFeed('repairs','Repair logged by warden: '+cat+' at '+where,'Logged for '+s.name+' (Room '+s.room+').');
+    S.wardenIssueOpen=false;toast('Repair request logged.');commit();
+  },
+  'issue-assign':f=>{
+    const i=byId(DB.issues,f.dataset.id);
+    const staff=f.elements.staff.value,visit=f.elements.visit.value,note=(f.elements.note.value||'').trim();
+    if(staff){i.staff=staff;i.log.push({at:NOW(),text:'Assigned to '+staff})}
+    if(visit){i.visit=visit;i.log.push({at:NOW(),text:'Visit scheduled for '+fDT(visit)})}
+    if(note){i.log.push({at:NOW(),text:'Note: '+note})}
+    if(i.status==='reported')i.status='assigned';
+    pushFeed('repairs','Staff assigned: '+i.cat+' at '+i.where,(staff?'Assigned to '+staff+'. ':'')+(visit?'Visit: '+fDT(visit):''));
+    toast('Staff assignment saved.');commit();
+  },
+  'laundry-new':f=>{
+    const m=me();
+    const roll=m?m.roll:(SESSION&&SESSION.roll?SESSION.roll:DB.students[0].roll);
+    const items=Number(f.elements.items.value);
+    const note=(f.elements.note.value||'').trim();
+    if(!items||items<=0)return toast('Please enter a valid item count.');
+    DB.laundry.push({id:uid(),roll,items,note,status:'given',at:NOW(),log:[{at:NOW(),text:'Given to dhobi'}]});
+    pushFeed('laundry','Laundry submitted: '+(m?m.name:'Student')+' ('+items+' items)',(note?'Bag: '+note:''));
+    toast('Added '+items+' items to dhobi tracker.');commit();
+  },
+  'laundry-warden-new':f=>{
+    const roll=f.elements.roll.value,s=stu(roll);
+    const items=Number(f.elements.items.value);
+    const note=(f.elements.note.value||'').trim();
+    if(!items||items<=0)return toast('Please enter a valid item count.');
+    DB.laundry.push({id:uid(),roll,items,note,status:'given',at:NOW(),log:[{at:NOW(),text:'Intake recorded by Warden'}]});
+    pushFeed('laundry','Laundry intake: '+s.name+' ('+items+' items)',(note?'Bag: '+note:''));
+    S.wardenLauOpen=false;toast('Recorded laundry for '+s.name+'.');commit();
+  },
+  'feed-ann':f=>{
+    const cat=f.elements.cat.value,title=f.elements.title.value.trim(),desc=f.elements.desc.value.trim();
+    const st=f.elements.startDate?f.elements.startDate.value:'';
+    const en=f.elements.endDate?f.elements.endDate.value:'';
+    if(cat==='holidays'&&st){
+      DB.holidays.push({id:uid(),date:st,endDate:en||st,name:title,note:desc});
+    }
+    pushFeed(cat,title,desc);
+    S.annOpen=false;toast('Notice broadcasted to all students.');commit();
+  },
+  'lf-new':async f=>{
+    const button=f.querySelector('button[type="submit"],button.btn.primary');
+    if(button.disabled)return;
+    const m=me(),session=SESSION;
+    const file=f.elements.photo.files[0];
+    const problem=lfPhotoError(file);
+    if(problem){toast(problem);return;}
+    const x={id:uid(),kind:f.elements.kind.value,item:f.elements.item.value.trim(),details:f.elements.details.value.trim(),place:f.elements.place.value.trim(),date:TODAY(),roll:m.roll,status:'open',photo:''};
+    if(!x.item||!x.place){toast('Please enter the item name and location.');return;}
+    button.disabled=true;button.textContent='Saving item…';
+    try{
+      if(file)x.photo=await compress(file,1200,.75);
+      if(SESSION!==session)return;
+      const previousFeed=DB.feedItems.slice();
+      DB.lf.push(x);
+      pushFeed('lostfound',x.kind==='lost'?'Lost item reported: '+x.item:'Found item reported: '+x.item,x.place+' - Reported by '+m.name);
+      if(!save()){
+        DB.lf=DB.lf.filter(item=>item.id!==x.id);DB.feedItems=previousFeed;
+        toast('Browser storage is full. Try a smaller photo or free space before posting.');return;
+      }
+      toast('Item posted'+(file?' with photo':'')+'.');render();
+    }catch(error){toast('This photo could not be read. Try another JPG, PNG or WebP image.');}
+    finally{button.disabled=false;button.textContent='Post & Notify Everyone';}
+  },
+  'fb-new':f=>{
+    const m=me();
+    DB.feedback.push({id:uid(),roll:m.roll,type:f.elements.type.value,meal:f.elements.meal.value,text:f.elements.text.value.trim(),status:'new',at:NOW()});
+    pushFeed('menu','New student feedback: '+f.elements.type.value+' on '+f.elements.meal.value,m.name+' sent feedback to mess committee.');
+    toast('Feedback sent.');commit();
+  },
+  'contacts-save':f=>{
+    DB.contacts.forEach(c=>{c.name=f.elements['n-'+c.id].value.trim();c.phone=f.elements['p-'+c.id].value.trim()});
+    DB.staff.forEach(c=>{c.name=f.elements['n-'+c.id].value.trim();c.phone=f.elements['p-'+c.id].value.trim()});
+    S.infoEdit=false;toast('Contacts saved.');commit();
+  },
+  'rules':f=>{DB.rules.curfew=f.elements.curfew.value;DB.rules.rollcall=f.elements.rollcall.value;toast('Timings saved.');commit()},
+  'hol-add':f=>{
+    DB.holidays.push({id:uid(),date:f.elements.date.value,endDate:f.elements.endDate.value||f.elements.date.value,name:f.elements.name.value.trim(),note:f.elements.note.value.trim()});
+    pushFeed('holidays','Holiday scheduled: '+f.elements.name.value.trim(),'Dates: '+f.elements.date.value+(f.elements.endDate.value?' to '+f.elements.endDate.value:''));
+    toast('Holiday added.');commit();
+  },
+  'sos':f=>{
+    const m=me();
+    DB.emergencies.push({id:uid(),roll:m.roll,symptom:f.elements.symptom.value,note:f.elements.note.value.trim(),phone:m.phone,status:'new',at:NOW(),log:[{at:NOW(),text:'Alert sent'}]});
+    pushFeed('medical','EMERGENCY MEDICAL ALERT: '+m.name,'Room '+m.room+', '+f.elements.symptom.value+'. Phone: '+m.phone);
+    S.sosOpen=false;toast('Warden alerted immediately.');commit();
+  },
+  'lookup':f=>{
+    const q=f.elements.roll.value.trim();S.lookQ=q;
+    const hit=DB.students.find(x=>x.roll.toLowerCase()===q.toLowerCase()||x.name.toLowerCase()===q.toLowerCase()||x.room.toLowerCase()===q.toLowerCase());
+    if(hit){S.lookRoll=hit.roll;S.lookQ=hit.roll;S.lookMonth=TODAY().slice(0,7)}
+    else{
+      const m=DB.students.filter(x=>x.roll.toLowerCase().includes(q.toLowerCase())||x.name.toLowerCase().includes(q.toLowerCase())||x.room.toLowerCase().includes(q.toLowerCase()));
+      if(m.length===1){S.lookRoll=m[0].roll;S.lookQ=m[0].roll;S.lookMonth=TODAY().slice(0,7)}
+      else S.lookRoll=null;
+    }
+    render();
+  }
+};
+
+document.addEventListener('submit',e=>{
+  const f=e.target.closest('form[data-form]');if(!f)return;
+  e.preventDefault();
+  if(f.dataset.form==='login'){
+    const username=f.elements.username.value.trim();
+    const password=f.elements.password.value;
+    const expected=loginRole==='warden'?'Warden@123':'Student@123';
+    if(username!==loginRole||password!==expected){
+      $('#login-error').textContent='Incorrect credentials for the selected portal. Use the demo account shown below.';
+      f.elements.password.focus();return;
+    }
+    Object.assign(S,INITIAL_STATE);
+    SESSION={role:loginRole,roll:loginRole==='student'?(DB.demoRoll||DB.students[0].roll):null};
+    render();scrollTo(0,0);return;
+  }
+  if(!SESSION)return;
+  const fn=FORMS[f.dataset.form];if(fn)fn(f,e);
+});
+
+function lfPhotoError(file){
+  if(!file)return '';
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type))return 'Choose a JPG, PNG or WebP image.';
+  if(file.size>8*1024*1024)return 'Please choose a photo smaller than 8 MB.';
+  return '';
+}
+function compress(file,max,q){return new Promise((res,rej)=>{const fr=new FileReader();fr.onerror=rej;fr.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q))};im.src=fr.result};fr.readAsDataURL(file)})}
+
+/* ---------- START ---------- */
+(function(){
+  document.documentElement.dataset.theme='light';
+  render();
+  initSigPad();
+  setInterval(()=>{
+    if(SESSION&&['overview','outings','feed'].includes(S.view)&&!document.activeElement.closest('form')&&!document.activeElement.matches('input,select,textarea'))render();
+  },60000);
+})();
+</script>
+</body>
+</html>
