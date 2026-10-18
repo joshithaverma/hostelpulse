@@ -234,7 +234,25 @@ nav.bottom{display:none}
 
 
 .lf-photo{display:block;width:100%;max-width:360px;max-height:280px;object-fit:contain;background:var(--soft);border:1px solid var(--line);border-radius:10px;margin:12px 0}
-</style>
+
+/* Calm, compact interface */
+:root{--bg:#f5f7fa;--ink:#192c39;--mute:#647581;--line:#e5ebef;--pri:#126a65;--hdr:#163c3a;--soft:#eaf4f1;--shadow:0 4px 24px #193a3905}
+body{font-size:15px;line-height:1.5}h1{font-size:30px;letter-spacing:-1px}h2{font-size:18px}.sub,.note,.line{font-size:13px}
+.top{padding:18px 32px;background:#163c3a}.brand{letter-spacing:-.6px}.brand small{font-size:11px;letter-spacing:.3px}
+.strip{background:#fff;color:var(--ink);padding:16px 32px;border-bottom:1px solid var(--line);gap:14px 30px}.strip span{color:var(--mute);font-size:11px}.strip b{font-size:13px}.avatar{background:var(--soft);color:var(--pri);width:40px;height:40px}
+.layout{grid-template-columns:205px minmax(0,1fr);gap:32px;padding:30px;max-width:1400px}nav.side{gap:5px}nav.side button{font-size:13px;padding:12px;border-radius:12px}nav.side button[aria-current=page]{background:var(--soft);color:var(--pri)}
+.panel{padding:24px;border-radius:18px;margin-bottom:22px}.btn{border-radius:10px;font-size:13px;transition:background .15s,transform .15s}.btn:hover{transform:translateY(-1px)}.btn.primary{box-shadow:0 4px 12px #126a6518}input,select,textarea{border-radius:10px;font-size:14px;background:#fbfcfd}.field>span{font-size:12px;margin-bottom:7px}.field{margin-bottom:16px}
+.head{margin-bottom:24px}.head p{max-width:65ch}.tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:28px}.tile{border:1px solid var(--line);padding:20px;border-radius:16px}.tile .v{font-size:32px;margin:10px 0 2px}.tile .l{font-size:12px}.tile .s{font-size:11px}.tile .ti{color:var(--pri);background:var(--soft);padding:6px;border-radius:9px;opacity:1}.tile.t-bad .v{color:var(--bad)}.tile.t-warn .v{color:var(--warn)}
+.welcome{padding:30px;border-radius:22px;background:#163c3a;color:white;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px;position:relative;overflow:hidden}.welcome:after{content:'';width:180px;height:180px;border:36px solid #ffffff08;border-radius:50%;position:absolute;right:100px;top:-90px;pointer-events:none}.welcome p{color:#b9d4d0;font-size:13px;margin-top:10px}.welcome .eyebrow{color:#a5d9cc;font-size:10px;letter-spacing:2px;margin-bottom:8px}.welcome .btn{background:#d8f3e8;color:#18433b;border:0;flex-shrink:0}
+.section-label{display:flex;justify-content:space-between;align-items:center;margin:26px 0 14px}.section-label span{font-size:12px;color:var(--mute)}
+.opt-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.opt-card{font:inherit;text-align:left;padding:22px;border-radius:16px;align-items:center;min-height:98px;transition:transform .15s,box-shadow .15s}.opt-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px #126a6510}.opt-card .ico{background:var(--soft);box-sizing:content-box;padding:12px;border-radius:13px;width:23px;height:23px;flex:none;margin:0}.opt-card b{font-size:14px;margin-bottom:4px}.opt-card span{font-size:11px}.opt-card:nth-child(3n+2) .ico{background:#eef0fb;color:#6264a8}.opt-card:nth-child(3n) .ico{background:#fff4e5;color:#a47329}
+.login-wrap{max-width:1000px;gap:85px;padding:36px 24px}.login-intro h1{font-size:58px;letter-spacing:-3px;line-height:1.06}.login-brand{font-size:25px}.login-intro>p{max-width:300px}.login-card{padding:30px;border-radius:24px;box-shadow:0 20px 70px #193a3909}.login-card h2{font-size:26px}.login-tabs{padding:5px;background:var(--bg);border-radius:12px;margin:22px 0}.login-tabs .btn{border:0;background:transparent}.login-tabs .btn.primary{background:white;color:var(--pri);box-shadow:0 2px 8px #193a3910}.login-demo{background:transparent;border-top:1px solid var(--line);border-radius:0;padding:18px 0 0;margin-top:20px}.login-demo .btnrow{display:grid;grid-template-columns:1fr 1fr}.login-demo b{font-size:12px;color:var(--mute);font-weight:500}.login-card .note{font-size:11px}.login-features{display:none}.tabs{gap:2px}.tab{font-size:13px}.hero .big{font-size:21px}.cols{gap:22px}.badge{font-size:10px;min-width:18px;line-height:18px}.top .sub{font-size:11px}
+@media(max-width:1100px){.opt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-wrap{gap:40px}}
+@media(max-width:860px){.layout{grid-template-columns:1fr;padding:20px 16px 100px}.top{padding:14px 16px}.strip{padding:12px 16px;gap:12px 20px}.welcome{padding:24px}.welcome h1{font-size:25px}.tiles{gap:8px}.tile{padding:14px}.tile .ti{display:none}.tile .v{font-size:26px}.tile .l{padding:0}.tile .s{font-size:10px}.panel{padding:18px}.opt-card{padding:16px}.opt-card .ico{padding:9px}.login-wrap{max-width:460px;grid-template-columns:1fr;gap:24px}.login-intro h1{font-size:38px;letter-spacing:-1.5px;margin:16px 0 0}.login-intro>p,.login-intro .note{display:none}.login-card{padding:24px}.login-kicker{font-size:10px}.login-card .grid2{grid-template-columns:1fr 1fr}.welcome .btn{padding:10px}.cols{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:430px){.welcome{display:block}.welcome .btn{margin-top:18px}.opt-card{gap:10px;padding:14px 10px}.opt-card b{font-size:12px}.opt-card span{font-size:10px}.opt-card .ico{width:18px;height:18px;padding:7px}.top .brand small{max-width:160px}.top .btn{padding:6px 9px}.strip div:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.head details{margin-top:8px}.head summary{font-size:12px;color:var(--mute);font-weight:400}.head details p{margin-top:8px}.top .brand small{color:#b9d4d0}</style>
 </head>
 <body>
 <div id="app"></div>
@@ -517,7 +535,7 @@ function sundayQuotaUsed(roll,monthYm){
 
 const pill=(t,tone)=>'<span class="pill p-'+(tone||'info')+'">'+esc(t)+'</span>';
 const attPill=v=>v?pill(ATT[v][0],ATT[v][1]):pill('Not marked','info');
-const head=(t,s)=>'<div class="head"><h1>'+esc(t)+'</h1>'+(s?'<p>'+esc(s)+'</p>':'')+'</div>';
+const head=(t,s)=>'<div class="head"><h1>'+esc(t)+'</h1>'+(s?'<details><summary>About this page</summary><p>'+esc(s)+'</p></details>':'')+'</div>';
 const empty=t=>'<p class="empty">'+esc(t)+'</p>';
 const field=(l,inner)=>'<label class="field"><span>'+esc(l)+'</span>'+inner+'</label>';
 const opts=(arr,sel)=>arr.map(x=>'<option'+(x===sel?' selected':'')+'>'+esc(x)+'</option>').join('');
@@ -533,17 +551,17 @@ function outStatus(o){
 
 /* ALL 12 FIRST-CLASS OPTIONS CLEARLY LISTED */
 const NAV=[
-  ['overview','Overview','overview'],
-  ['outings','Outings & Quota','outings'],
-  ['verification','Verification & Outpasses','pass'],
-  ['mess','Mess & Opinion Polls','mess'],
-  ['student','Student Profile Lookup','student'],
-  ['attendance','Attendance & Exports','attendance'],
-  ['issues','Repairs & Maintenance','issues'],
-  ['laundry','Laundry & Dhobi','laundry'],
+  ['overview','Home','overview'],
+  ['outings','Outings','outings'],
+  ['verification','Outpasses','pass'],
+  ['mess','Mess & polls','mess'],
+  ['student','Students','student'],
+  ['attendance','Attendance','attendance'],
+  ['issues','Repairs','issues'],
+  ['laundry','Laundry','laundry'],
   ['lostfound','Lost & Found','lostfound'],
-  ['feed','Daily Updates Feed','bell'],
-  ['signature','Drawn Signature Pad','pen'],
+  ['feed','Updates','bell'],
+  ['signature','Settings','pen'],
   ['medical','Medical SOS','medical']
 ];
 
@@ -614,7 +632,7 @@ function bottom(c){
 
 function loginHTML(){
   const w=loginRole==='warden';
-  return `<main class="login-wrap"><section class="login-intro"><div class="login-brand">HostelPulse</div><p class="login-kicker">CVR COLLEGE OF ENGINEERING HOSTELS</p><h1>Your hostel.<br>One connected place.</h1><p>Manage daily hostel life with a dedicated space for students and wardens.</p><div class="login-features"><span>Attendance & outpasses</span><span>Mess & maintenance</span><span>Announcements & services</span></div><p class="note">Install HostelPulse from your browser menu to keep it on your home screen.</p><button type="button" class="btn" data-install hidden>Install app</button></section><section class="login-card" aria-labelledby="login-title"><p class="login-kicker">WELCOME TO HOSTELPULSE</p><h2 id="login-title">${w?'Warden':'Student'} login</h2><p class="sub">Enter your details to open your portal.</p><div class="login-tabs" role="group" aria-label="Choose your portal"><button type="button" data-login-role="student" aria-pressed="${!w}" class="btn ${!w?'primary':''}">Student</button><button type="button" data-login-role="warden" aria-pressed="${w}" class="btn ${w?'primary':''}">Warden</button></div><form data-form="login"><label class="field"><span>Full name</span><input name="fullName" autocomplete="name" maxlength="80" required placeholder="Enter your name"></label><label class="field"><span>Roll number</span><input name="roll" maxlength="30" required placeholder="${w?'Enter warden roll / staff number':'Enter your roll number'}"></label><label class="field"><span>Mobile number</span><input name="mobile" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" required placeholder="10-digit mobile number"></label><div class="grid2"><label class="field"><span>Hostel room number</span><input name="room" maxlength="20" required placeholder="e.g. 101"></label><label class="field"><span>Block</span><input name="block" maxlength="30" required placeholder="e.g. A"></label></div><p id="login-error" role="alert" class="login-error"></p><button class="btn primary login-submit" type="submit">Log in as ${w?'warden':'student'}</button></form><p class="note">Profile access only: identity is not verified. This prototype stores data in this browser and does not send real alerts.</p><div class="login-demo"><b>Just exploring? Try a demo</b><p>No details needed. Explore either portal with sample data.</p><div class="btnrow" style="margin-top:12px"><button type="button" class="btn" data-demo-role="student">Student Demo</button><button type="button" class="btn" data-demo-role="warden">Warden Demo</button></div></div></section></main>`;
+  return `<main class="login-wrap"><section class="login-intro"><div class="login-brand">HostelPulse</div><p class="login-kicker">CVR COLLEGE OF ENGINEERING HOSTELS</p><h1>Hostel life.<br>Made simple.</h1><p>A little less hassle. A lot more living.</p><div class="login-features"><span>Attendance & outpasses</span><span>Mess & maintenance</span><span>Announcements & services</span></div><p class="note">Your hostel, in your pocket.</p><button type="button" class="btn" data-install hidden>Install app</button></section><section class="login-card" aria-labelledby="login-title"><p class="login-kicker">WELCOME BACK</p><h2 id="login-title">${w?'Warden':'Student'} login</h2><p class="sub">Your space starts here.</p><div class="login-tabs" role="group" aria-label="Choose your portal"><button type="button" data-login-role="student" aria-pressed="${!w}" class="btn ${!w?'primary':''}">Student</button><button type="button" data-login-role="warden" aria-pressed="${w}" class="btn ${w?'primary':''}">Warden</button></div><form data-form="login"><label class="field"><span>Full name</span><input name="fullName" autocomplete="name" maxlength="80" required placeholder="Enter your name"></label><label class="field"><span>Roll number</span><input name="roll" maxlength="30" required placeholder="${w?'Enter warden roll / staff number':'Enter your roll number'}"></label><label class="field"><span>Mobile number</span><input name="mobile" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" required placeholder="10-digit mobile number"></label><div class="grid2"><label class="field"><span>Hostel room number</span><input name="room" maxlength="20" required placeholder="e.g. 101"></label><label class="field"><span>Block</span><input name="block" maxlength="30" required placeholder="e.g. A"></label></div><p id="login-error" role="alert" class="login-error"></p><button class="btn primary login-submit" type="submit">Log in as ${w?'warden':'student'}</button></form><p class="note">Prototype · Browser-only data · No verified login or live alerts.</p><div class="login-demo"><b>Take a quick look</b><div class="btnrow" style="margin-top:12px"><button type="button" class="btn" data-demo-role="student">Student Demo</button><button type="button" class="btn" data-demo-role="warden">Warden Demo</button></div></div></section></main>`;
 }
 function enterPortal(role,profile,demo=false){
   Object.assign(S,JSON.parse(JSON.stringify(INITIAL_STATE)));
@@ -660,49 +678,12 @@ function viewHTML(){
 
 /* ---------- 1. OVERVIEW (EVERY SINGLE OPTION SHOWN) ---------- */
 function ovView(){
-  const w=isW(),m=me(),t=TODAY();
-  let h=head(w?'Warden Administrative Overview':'Student Hostel Hub','Access all hostel modules, track attendance, manage outings and live updates.');
-
-  // Role Banner & Quick Switch
-  h+='<div class="panel hero h-ok"><div class="item"><div class="main">'
-   +'<div class="big">HostelPulse: '+(w?'Warden Portal Active':'Student View: '+esc(m.name))+'</div>'
-   +'<div class="line">CVR College of Engineering Hostels &bull; Tap any module card below to open that feature directly.</div>'
-   +'</div>'
-   +'<div class="btnrow">'
-   +'<span class="pill p-info">Demo account &bull; Browser storage</span>'
-   +'</div></div></div>';
-
-  // DIRECT GRID OF ALL FIRST-CLASS OPTIONS
-  h+='<h2 style="margin:20px 0 10px">All Hostel Modules & Options</h2>';
-  h+='<div class="opt-grid">'
-   +'<div class="opt-card" data-act="go" data-v="outings">'+ic('outings')+'<div><b>1. Outings & Sunday Quota</b><span>Sunday quota (3/mo, Sundays only), quota counter & blocking, holiday outings</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="verification">'+ic('pass')+'<div><b>2. Verification & Outpasses</b><span>Mentor & parent tap-to-call, locked approve button, unique outpass (CVR-OP-XXXXX), PDF download</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="mess">'+ic('mess')+'<div><b>3. Mess & Opinion Polls</b><span>Weekly menu editing, dish alerts, meal polls, custom 2-5 option polls, live voting tallies</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="student">'+ic('student')+'<div><b>4. Full Student Profile Lookup</b><span>Search by name/roll/room, personal dossier, health notes, blood group, attendance calendar</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="attendance">'+ic('attendance')+'<div><b>5. Attendance & Exports</b><span>Daily register shortcuts, landscape monthly PDF sheet, CSV phone spreadsheet export</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="lostfound">'+ic('lostfound')+'<div><b>6. Lost & Found</b><span>Broadcasts alerts to all, only reporting student can close ("I Found It"), resolution notice</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="feed">'+ic('bell')+'<div><b>7. Daily Updates Feed</b><span>Bell icon unread badge, grouped by day, category filter chips, warden announcements</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="signature">'+ic('pen')+'<div><b>8. Drawn Signature Pad & Rules</b><span>Canvas drawing pad to save warden digital signature for outpasses, timings, contacts</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="issues">'+ic('issues')+'<div><b>9. Repairs & Maintenance</b><span>Report problems, warden marks In Progress/Fixed, assigns staff, student confirms fix</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="laundry">'+ic('laundry')+'<div><b>10. Laundry & Washing Slots</b><span>Dhobi intake tracker, washing/ready status, reserve 1-hour machine 1 & 2 slots</span></div></div>'
-   +'<div class="opt-card" data-act="go" data-v="medical">'+ic('medical')+'<div><b>11. Medical SOS & Directory</b><span>Emergency medical alerts, doctor & ambulance contacts with one-tap dialing</span></div></div>'
-   +'</div>';
-
-  // Live Stats Tiles
-  const outNow=DB.outings.filter(o=>o.status==='out');
-  const late=outNow.filter(o=>overdueMin(o)>0);
-  const pendingOut=DB.outings.filter(o=>o.status==='pending'||o.status==='verifying').length;
-  const openPolls=DB.polls.filter(p=>p.status==='open').length;
-
-  h+='<div class="tiles">'
-   +tile('Students Out Right Now',String(outNow.length),late.length?late.length+' overdue':'All on schedule','outings',late.length?'bad':'')
-   +tile('Pending Outpass Requests',String(pendingOut),'Needs verification','verification',pendingOut?'warn':'ok')
-   +tile('Active Opinion Polls',String(openPolls),'Open for voting','mess')
-   +tile('Open Repair Tickets',String(DB.issues.filter(i=>i.status!=='closed').length),'Maintenance tracker','issues')
-   +tile('Unread Daily Updates',String(unreadFeedCount()),'Hostel activity stream','feed')
-   +'</div>';
-
-  return h;
+ const w=isW(),m=me(),name=w?DB.wardenAuth.name:m.name;
+ const outings=DB.outings.filter(o=>w||o.roll===m.roll),issues=DB.issues.filter(i=>w||i.roll===m.roll);
+ let h='<section class="welcome"><div><div class="eyebrow">YOUR HOSTEL, SIMPLIFIED</div><h1>Hi, '+esc(name.split(' ')[0])+'.</h1><p>'+ (w?'A clear view of your hostel today.':'Everything you need. One place.')+'</p></div><button class="btn" data-act="go" data-v="'+(w?'verification':'outings')+'">'+(w?'Review requests':'Request outing')+' &rarr;</button></section>';
+ h+='<div class="tiles">'+tile(w?'Awaiting approval':'My requests',String(outings.filter(o=>['pending','verifying'].includes(o.status)).length),'Outings & passes','verification')+tile('Open repairs',String(issues.filter(i=>i.status!=='closed').length),'Maintenance','issues')+tile('New updates',String(unreadFeedCount()),'Hostel notices','feed')+'</div>';
+ const modules=[['outings','Outings','Requests & quota','outings'],['verification','Outpasses','Approvals & passes','pass'],['mess','Mess & polls','Menu & voting','mess'],['attendance','Attendance','Calendar & records','attendance'],['issues','Repairs','Report & track','issues'],['laundry','Laundry','Bags & slots','laundry'],['lostfound','Lost & found','Find your things','lostfound'],['feed','Updates','Hostel notices','bell'],['medical','Medical','SOS & contacts','medical'],['student','Students','Profiles & lookup','student'],['signature','Settings','Signature & rules','pen']];
+ h+='<div class="section-label"><h2>Your services</h2><span>'+ (SESSION.demo?'Demo mode':'My portal')+'</span></div><div class="opt-grid">'+modules.filter(x=>allowedView(x[0])).map(x=>'<button type="button" class="opt-card" data-act="go" data-v="'+x[0]+'">'+ic(x[3])+'<div><b>'+x[1]+'</b><span>'+x[2]+'</span></div></button>').join('')+'</div>';return h;
 }
 
 const tile=(l,v,s,go,tone,txt)=>'<button class="tile'+(tone?' t-'+tone:'')+'" data-act="go" data-v="'+go+'"><span class="ti">'+ic(go)+'</span><span class="l">'+esc(l)+'</span><span class="v'+(txt?' txt':'')+'">'+esc(v)+'</span><span class="s">'+esc(s||'')+'</span></button>';
@@ -713,25 +694,25 @@ function outW(){
   const outNow=DB.outings.filter(o=>o.status==='out');
   const hist=DB.outings.filter(o=>['returned','rejected','cancelled','approved'].includes(o.status)).sort((a,b)=>(b.inAt||b.decidedAt||b.expectedOut).localeCompare(a.inAt||a.decidedAt||a.expectedOut)).slice(0,15);
 
-  let h=head('Outings Management & Gate Register','Verify student requests with parents & mentors, issue digital outpasses, and manage gate exits.');
+  let h=head('Outings','Verify student requests with parents & mentors, issue digital outpasses, and manage gate exits.');
 
   h+='<div class="panel hero h-warn"><div class="item"><div class="main">'
    +'<div class="big">'+pending.length+' Requests Waiting for Verification</div>'
    +'<div class="line">CVR rules: 3 Sunday outings per month (Sundays only). Approve button requires mentor & parent verification.</div>'
-   +'</div><button class="btn primary" data-act="go" data-v="verification">Open Verification Screen</button></div></div>';
+   +'</div><button class="btn primary" data-act="go" data-v="verification">Review requests</button></div></div>';
 
   h+='<div class="cols">'
    +'<div class="panel"><h2>Students Currently Outside ('+outNow.length+')</h2>'
    +(outNow.length?'<div class="list">'+outNow.map(o=>outCard(o,'w')).join('')+'</div>':empty('No students outside right now.'))+'</div>'
-   +'<div class="panel"><h2>Record Manual Gate Exit</h2><form data-form="gate-walkin"><div class="grid2">'
+   +'<div class="panel"><h2>Record gate exit</h2><form data-form="gate-walkin"><div class="grid2">'
    +field('Student','<select name="roll">'+DB.students.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(s=>'<option value="'+s.roll+'">'+esc(s.name)+', room '+esc(s.room)+'</option>').join('')+'</select>')
    +field('Destination','<input name="place" required placeholder="Hospital / Exam / Urgent work">')
    +field('Return by','<input type="datetime-local" name="back" required value="'+lt(new Date(Date.now()+3*3600e3))+'">')
    +field('Reason','<input name="reason" required placeholder="Reason for manual gate exit">')
-   +'</div><button class="btn primary" style="margin-top:8px">Record Exit at Gate</button></form></div>'
+   +'</div><button class="btn primary" style="margin-top:8px">Save exit</button></form></div>'
    +'</div>';
 
-  h+='<div class="panel"><h2>Outing History & Digital Gate Log</h2>'+(hist.length?'<div class="list">'+hist.map(o=>outCard(o,'w')).join('')+'</div>':empty('No history on record.'))+'</div>';
+  h+='<div class="panel"><h2>History</h2>'+(hist.length?'<div class="list">'+hist.map(o=>outCard(o,'w')).join('')+'</div>':empty('No history on record.'))+'</div>';
   return h;
 }
 
@@ -741,7 +722,7 @@ function outS(){
   const mine=DB.outings.filter(o=>o.roll===m.roll).sort((a,b)=>b.expectedOut.localeCompare(a.expectedOut));
   const activeHol=DB.holidays.filter(h=>h.date>=plus(TODAY(),-3));
 
-  let h=head('Outings & Sunday Quota','Request Sunday outings, holiday outings, track approval progress, and view issued outpasses.');
+  let h=head('My outings','Request Sunday outings, holiday outings, track approval progress, and view issued outpasses.');
 
   // Quota counter and blocking banner
   h+='<div class="panel hero h-'+(quotaUsed>=3?'bad':'ok')+'"><div class="item"><div class="main">'
@@ -750,7 +731,7 @@ function outS(){
    +'</div><div>'+pill((3-quotaUsed)+' remaining this month',quotaUsed>=3?'bad':'ok')+'</div></div></div>';
 
   const o0=new Date(Date.now()+30*60000);o0.setMinutes(Math.ceil(o0.getMinutes()/15)*15,0,0);
-  h+='<div class="panel"><h2>Request Outing Permission</h2><form data-form="out-new">'
+  h+='<div class="panel"><h2>New outing</h2><form data-form="out-new">'
    +'<div class="grid2">'
    +field('Outing Type','<select name="type" id="outTypeSelect">'
      +'<option value="sunday"'+(quotaUsed>=3?' disabled':'')+'>Sunday Outing '+(quotaUsed>=3?'(Quota full: 3/3 used)':'(Sundays only)')+'</option>'
@@ -771,10 +752,10 @@ function outS(){
    +field('Emergency Contact Phone','<input name="phone" required value="'+esc(m.phone)+'" inputmode="tel">')
    +'</div>'
    +'<p class="note" style="margin:4px 0 12px">Warden verifies with your mentor ('+esc(m.mentorName)+') and parent ('+esc(m.parentName)+') before approving.</p>'
-   +'<button class="btn primary">Submit Outing Request</button>'
+   +'<button class="btn primary">Send request</button>'
    +'</form></div>';
 
-  h+='<div class="panel"><div class="item"><h2>My Outings & Outpasses</h2><button class="btn small primary" data-act="go" data-v="verification">View My Outpasses</button></div>'+(mine.length?'<div class="list">'+mine.map(o=>outCard(o,'s')).join('')+'</div>':empty('You have not requested any outings yet.'))+'</div>';
+  h+='<div class="panel"><div class="item"><h2>My requests</h2><button class="btn small primary" data-act="go" data-v="verification">My passes</button></div>'+(mine.length?'<div class="list">'+mine.map(o=>outCard(o,'s')).join('')+'</div>':empty('You have not requested any outings yet.'))+'</div>';
   return h;
 }
 
@@ -1419,7 +1400,7 @@ function feedView(){
     list=list.filter(f=>f.cat===S.feedFilter);
   }
 
-  let h=head('Daily Updates Feed','One live feed covering menu updates, new polls, lost and found, holidays, outing decisions, and notices.');
+  let h=head('Updates','One live feed covering menu updates, new polls, lost and found, holidays, outing decisions, and notices.');
 
   if(w){
     h+='<div class="panel"><div class="item"><h2>Post Notice or Announcement</h2><button class="btn small primary" data-act="toggle-ann">'+(S.annOpen?'Close Form':'+ Create Announcement / Notice')+'</button></div>'
