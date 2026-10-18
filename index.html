@@ -2,6 +2,10 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
+<meta name="theme-color" content="#0B2F6B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
 <title>HostelPulse - CVR College of Engineering Hostels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -281,7 +285,7 @@ const ICON={
 const ic=n=>'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">'+(ICON[n]||ICON.info)+'</svg>';
 
 /* ---------- storage ---------- */
-const KEY='hostelpulse.light-demo.v1';
+const KEY='hostelpulse.profiles.v2';
 function rd(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}}
 function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
 function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>{t.style.display='none'},3800)}
@@ -455,6 +459,7 @@ const reqObjs=['menu','rollcall','contacts','rules'];
 for(const k of reqObjs){if(!DB[k]||typeof DB[k]!=='object')DB[k]=defaultSeed[k]||{}}
 if(!DB.wardenSig)DB.wardenSig=defaultSeed.wardenSig;
 let SESSION=null;
+let savedDB=null;
 let loginRole='student';
 const S={
   view:'overview',attTab:'roll',attDate:TODAY(),attMonth:TODAY().slice(0,7),attHostel:'all',attQ:'',
@@ -468,7 +473,7 @@ const S={
 const INITIAL_STATE=JSON.parse(JSON.stringify(S));
 const allowedView=v=>isW()||!['student','signature'].includes(v);
 const visibleNav=()=>NAV.filter(n=>allowedView(n[0]));
-const save=()=>wr(KEY,DB);
+const save=()=>SESSION&&SESSION.demo?true:wr(KEY,DB);
 const commit=()=>{save();render()};
 const isW=()=>!!SESSION&&SESSION.role==='warden';
 const me=()=>!isW()?DB.students.find(s=>s.roll===SESSION.roll)||DB.students[0]:DB.students[0];
@@ -577,11 +582,11 @@ function shell(){
   const unread=unreadFeedCount();
 
   const strip=w
-    ?'<div><span>Portal Role</span><b>Warden Administration</b></div><div><span>Hostel</span><b>All Hostels (Hostel A & B)</b></div><div><span>Students</span><b>'+DB.students.length+'</b></div><div><span>Today</span><b>'+fDay(TODAY())+'</b></div>'
+    ?'<div><span>Warden</span><b>'+esc(DB.wardenAuth.name)+'</b></div><div><span>Room / Block</span><b>'+esc(DB.wardenAuth.room||'Demo')+' / '+esc(DB.wardenAuth.block||'All')+'</b></div><div><span>Portal Role</span><b>Warden Administration</b></div><div><span>Hostel</span><b>All Hostels (Hostel A & B)</b></div><div><span>Students</span><b>'+DB.students.length+'</b></div><div><span>Today</span><b>'+fDay(TODAY())+'</b></div>'
     :'<div><span>Student</span><b>'+esc(m.name)+'</b></div><div><span>Roll No</span><b>'+esc(m.roll)+'</b></div><div><span>Room</span><b>'+esc(m.room)+' ('+esc(m.hostel)+')</b></div><div><span>Today</span><b>'+fDay(TODAY())+'</b></div>';
 
   return '<header class="top"><div class="brand">HostelPulse<small>CVR College of Engineering Hostels</small></div><div class="btnrow">'
-   +'<span class="sub" style="color:white">'+(w?'Warden demo':'Student demo')+'</span>'
+   +'<span class="sub" style="color:white">'+((w?'Warden':'Student')+(SESSION.demo?' demo':' portal'))+'</span>'
    +'<button class="btn small" data-act="go" data-v="feed" title="Daily Updates Feed">'+ic('bell')+' Feed'+(unread?' <span class="badge" style="background:#fff;color:var(--bad)">'+unread+'</span>':'')+'</button>'
    +'<button class="btn small" data-act="logout">Log out</button>'
    +'</div></header>'
@@ -609,7 +614,19 @@ function bottom(c){
 
 function loginHTML(){
   const w=loginRole==='warden';
-  return `<main class="login-wrap"><section class="login-intro"><div class="login-brand">HostelPulse</div><p class="login-kicker">CVR COLLEGE OF ENGINEERING HOSTELS</p><h1>Your hostel.<br>One connected place.</h1><p>Manage daily hostel life with a dedicated space for students and wardens.</p><div class="login-features"><span>Attendance & outpasses</span><span>Mess & maintenance</span><span>Announcements & services</span></div><p class="login-disclaimer">Student project · Interactive demo with sample data</p></section><section class="login-card" aria-labelledby="login-title"><p class="login-kicker">WELCOME TO HOSTELPULSE</p><h2 id="login-title">${w?'Warden':'Student'} sign in</h2><p class="sub">${w?'Manage hostel operations and student requests.':'Access your attendance, requests and hostel services.'}</p><div class="login-tabs" role="group" aria-label="Choose your portal"><button type="button" data-login-role="student" aria-pressed="${!w}" class="btn ${!w?'primary':''}">Student</button><button type="button" data-login-role="warden" aria-pressed="${w}" class="btn ${w?'primary':''}">Warden</button></div><form data-form="login"><label class="field"><span>Username</span><input name="username" autocomplete="username" required placeholder="${loginRole}" autocapitalize="none" spellcheck="false"></label><label class="field"><span>Password</span><input name="password" type="password" autocomplete="current-password" required placeholder="Enter demo password"></label><p id="login-error" role="alert" class="login-error"></p><button class="btn primary login-submit" type="submit">Sign in to ${w?'warden':'student'} portal</button></form><div class="login-demo"><b>Try the ${loginRole} demo</b><div>Username: <code>${loginRole}</code></div><div>Password: <code>${w?'Warden@123':'Student@123'}</code></div></div><p class="note">Demo access only. Data stays in this browser. These accounts do not provide secure authentication; real deployment requires a backend.</p></section></main>`;
+  return `<main class="login-wrap"><section class="login-intro"><div class="login-brand">HostelPulse</div><p class="login-kicker">CVR COLLEGE OF ENGINEERING HOSTELS</p><h1>Your hostel.<br>One connected place.</h1><p>Manage daily hostel life with a dedicated space for students and wardens.</p><div class="login-features"><span>Attendance & outpasses</span><span>Mess & maintenance</span><span>Announcements & services</span></div><p class="note">Install HostelPulse from your browser menu to keep it on your home screen.</p><button type="button" class="btn" data-install hidden>Install app</button></section><section class="login-card" aria-labelledby="login-title"><p class="login-kicker">WELCOME TO HOSTELPULSE</p><h2 id="login-title">${w?'Warden':'Student'} login</h2><p class="sub">Enter your details to open your portal.</p><div class="login-tabs" role="group" aria-label="Choose your portal"><button type="button" data-login-role="student" aria-pressed="${!w}" class="btn ${!w?'primary':''}">Student</button><button type="button" data-login-role="warden" aria-pressed="${w}" class="btn ${w?'primary':''}">Warden</button></div><form data-form="login"><label class="field"><span>Full name</span><input name="fullName" autocomplete="name" maxlength="80" required placeholder="Enter your name"></label><label class="field"><span>Roll number</span><input name="roll" maxlength="30" required placeholder="${w?'Enter warden roll / staff number':'Enter your roll number'}"></label><label class="field"><span>Mobile number</span><input name="mobile" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" required placeholder="10-digit mobile number"></label><div class="grid2"><label class="field"><span>Hostel room number</span><input name="room" maxlength="20" required placeholder="e.g. 101"></label><label class="field"><span>Block</span><input name="block" maxlength="30" required placeholder="e.g. A"></label></div><p id="login-error" role="alert" class="login-error"></p><button class="btn primary login-submit" type="submit">Log in as ${w?'warden':'student'}</button></form><p class="note">Profile access only: identity is not verified. This prototype stores data in this browser and does not send real alerts.</p><div class="login-demo"><b>Just exploring? Try a demo</b><p>No details needed. Explore either portal with sample data.</p><div class="btnrow" style="margin-top:12px"><button type="button" class="btn" data-demo-role="student">Student Demo</button><button type="button" class="btn" data-demo-role="warden">Warden Demo</button></div></div></section></main>`;
+}
+function enterPortal(role,profile,demo=false){
+  Object.assign(S,JSON.parse(JSON.stringify(INITIAL_STATE)));
+  if(demo){savedDB=DB;DB=seed();}
+  if(!demo&&role==='student'){
+    const existing=DB.students.find(x=>x.roll===profile.roll);
+    if(existing)Object.assign(existing,profile);
+    else DB.students.push({...stu(profile.roll),...profile,course:'Not provided',blood:'Not provided',healthNote:'Not provided',address:'',mentorName:'Not provided',mentorPhone:'',parentName:'Not provided',parentPhone:''});
+  }
+  if(!demo&&role==='warden')DB.wardenAuth={...profile};
+  SESSION={role,demo,profile,roll:role==='student'?(demo?(DB.demoRoll||DB.students[0].roll):profile.roll):null};
+  save();render();scrollTo(0,0);
 }
 
 function render(){
@@ -1665,7 +1682,7 @@ const byId=(arr,id)=>arr.find(x=>x.id===id);
 const ACTS={
   'go':d=>{S.more=false;S.view=d.v;S.confirmReset=false;S.sosOpen=false;S.menuEdit=false;S.infoEdit=false;render();scrollTo(0,0)},
   'more':()=>{S.more=!S.more;render()},'more-close':()=>{S.more=false;render()},
-  'logout':()=>{SESSION=null;Object.assign(S,INITIAL_STATE);render();scrollTo(0,0)},
+  'logout':()=>{if(SESSION.demo&&savedDB){DB=savedDB;savedDB=null;}SESSION=null;Object.assign(S,INITIAL_STATE);render();scrollTo(0,0)},
   'lookup':d=>{S.lookRoll=d.roll;S.lookQ=d.roll;S.lookMonth=TODAY().slice(0,7);S.view='student';S.more=false;render();scrollTo(0,0)},
   'look-month':d=>{const a=S.lookMonth.split('-').map(Number),x=new Date(a[0],a[1]-1+Number(d.d),1),k=x.getFullYear()+'-'+pad(x.getMonth()+1);if(k<=TODAY().slice(0,7)){S.lookMonth=k;render()}},
 
@@ -1827,6 +1844,8 @@ const ACTS={
 };
 
 document.addEventListener('click',e=>{
+  const demoButton=e.target.closest('[data-demo-role]');
+  if(demoButton&&!SESSION){enterPortal(demoButton.dataset.demoRole,null,true);return;}
   const roleButton=e.target.closest('[data-login-role]');
   if(roleButton){loginRole=roleButton.dataset.loginRole;render();return;}
   if(!SESSION)return;
@@ -2103,16 +2122,11 @@ document.addEventListener('submit',e=>{
   const f=e.target.closest('form[data-form]');if(!f)return;
   e.preventDefault();
   if(f.dataset.form==='login'){
-    const username=f.elements.username.value.trim();
-    const password=f.elements.password.value;
-    const expected=loginRole==='warden'?'Warden@123':'Student@123';
-    if(username!==loginRole||password!==expected){
-      $('#login-error').textContent='Incorrect credentials for the selected portal. Use the demo account shown below.';
-      f.elements.password.focus();return;
-    }
-    Object.assign(S,INITIAL_STATE);
-    SESSION={role:loginRole,roll:loginRole==='student'?(DB.demoRoll||DB.students[0].roll):null};
-    render();scrollTo(0,0);return;
+    const value=n=>f.elements[n].value.trim();
+    const phone=value('mobile').replace(/[\s()-]/g,'').replace(/^\+91/,'');
+    if(!value('fullName')||!value('roll')||!value('room')||!value('block')){$('#login-error').textContent='Please fill in all five details.';return;}
+    if(!/^[6-9][0-9]{9}$/.test(phone)){$('#login-error').textContent='Enter a valid 10-digit Indian mobile number (optional +91).';return;}
+    enterPortal(loginRole,{name:value('fullName'),roll:value('roll').toUpperCase(),phone,room:value('room'),block:value('block'),hostel:'Block '+value('block')});return;
   }
   if(!SESSION)return;
   const fn=FORMS[f.dataset.form];if(fn)fn(f,e);
@@ -2136,5 +2150,10 @@ function compress(file,max,q){return new Promise((res,rej)=>{const fr=new FileRe
   },60000);
 })();
 </script>
-</body>
-</html>
+<script>
+let installPrompt;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.querySelectorAll('[data-install]').forEach(b=>b.hidden=false)});
+document.addEventListener('click',async e=>{if(e.target.closest('[data-install]')&&installPrompt){await installPrompt.prompt();installPrompt=null;e.target.hidden=true;}});
+if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
